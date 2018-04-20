@@ -15,9 +15,9 @@ class Reporter:
         name = "opilaneisa"
         msg = "\n"+email+name+msg
         print(msg)
-        self.server.sendmail("linguissep@yahoo.com","linguissep@yahoo.com",msg)
+        self.server.sendmail("linguissep@yahoo.com","c.dswibowo@yahoo.com.tw",msg)
         print("mg sent")
         self.server.quit()
         
 r = Reporter("ahmadabad")
-r.reportProblem("anzen")
+r.reportProblem("aiuma")
