@@ -138,7 +138,7 @@ class Text2Speech:
             text[i] = self.mapper.mapping[text[i]]
         print(text)
 
-    def wav_playback(self, seq):
+    def wav_combine(self, seq):
         sequence = AudioSegment.from_wav("null.wav")
         for phoneme in seq:
             sequence += AudioSegment.from_wav(phoneme)
