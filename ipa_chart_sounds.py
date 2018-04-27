@@ -55,6 +55,7 @@ class MapperF:
                         'ɮ':'vcd_alv_lfr_f.wav',
                         'ʋ':'vcd_lbd_apx_f.wav',
                         'ɹ':'vcd_alv_apx_f.wav',
+                        'ɻ':'vcd_ret_apx_f.wav',
                         'j':'vcd_plt_apx_f.wav',
                         'ɰ':'vcd_vlr_apx_f.wav',
                         'l':'vcd_alv_lap_f.wav',
