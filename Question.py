@@ -1,9 +1,10 @@
 class Question(object):
-    def __init__(self, questionID, questiontype, questionText, answer, questionImage=""):
+    def __init__(self, questionID, questiontype, questionText, answer, option = None, questionImage=""):
         self.questionID = questionID
         self.questiontype = questiontype
         self.questionImage = questionImage
         self.questionText = questionText
+        self.option = option
         self.answer = answer
 
     def getQuestionType(self):
