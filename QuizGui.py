@@ -8,6 +8,7 @@ import Quiz as quiz
 import UserAnswer as userAnswer
 import QAPair as qapair
 import QuizEvaluator as evaluator
+import pickle
 
 class QuizApplication(QWidget):
     def __init__(self):
@@ -15,7 +16,6 @@ class QuizApplication(QWidget):
         self.leftlist = QListWidget()
 
         self.stack = []
-
         q1 = question.Question(1, "MultipleChoice", "How going to do", "A")
         q2 = question.Question(2, "Fill", "What is your name", "a", "speech_organ.jpg")
         q3 = question.Question(3, "TrueFalse", "Am I handsome? ", "true", "speech_organ.jpg")
