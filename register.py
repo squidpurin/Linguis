@@ -11,11 +11,14 @@ class Register:
             #loop back
         else:
             #load db user
+            ulist = pickle.load(open("userlist.p","rb"))
             new_user = User(self.uid, self.name, self.pw, self.email)
-            #save to db
+            ulist.append(new_user)
+            pickle.dump(ulist, open("userlist.p","wb"))
 
     def is_duplicate():
         #load db
+        ulist = pickle.load(open("userlist.p","rb"))
         for p in uList:
            if p.uid == self.uid:
                return True
