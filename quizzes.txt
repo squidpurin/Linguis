@@ -1,0 +1,10 @@
+quiz1
+q1%MultipleChoice%What is a?%clea.png%A.anjing,B.anjinx,C.anying,D.huanying,E.xianying%C
+q2%TrueFalse%What is b?%clea.png%true
+q3%Fill%What is c?%none%Anjinks
+#
+quiz2
+q1%MultipleChoice%What is a?%clea.png%A.anjing,B.anjinx,C.anying,D.huanying,E.xianying%C
+q2%TrueFalse%What is b?%clea.png%true
+q3%Fill%What is c?%none%Anjinks
+#
