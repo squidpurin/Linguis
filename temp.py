@@ -1,5 +1,7 @@
 import pickle
 
-f = []
+quiz = []
 
-pickle.dump(f, open('example.p', "wb"))
+pickle.dump(f, open('userlist.p', "wb"))
+
+pickle.dump(quiz, open('Quiz.p', "wb"))
