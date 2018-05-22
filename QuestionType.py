@@ -30,13 +30,12 @@ class QuestionType(object):
     def getClass(self):
         return self.__class__.__name__
 
-
-
 class MultipleChoice(QWidget, QuestionType):
     def __init__(self, questionclass,parent=None):
         super(MultipleChoice, self).__init__(parent)
         QuestionType.__init__(self)
         layout = QFormLayout()
+        self.buttons = []
 
         self.setQuestion(questionclass.getQuestionText())
         self.setImagename(questionclass.getQuestionImage())
@@ -54,23 +53,23 @@ class MultipleChoice(QWidget, QuestionType):
             imagelabel.setFixedSize(width, height)
             layout.addRow(imagelabel)
 
-        self.b1 = QRadioButton("A. ")
+        self.b1 = QRadioButton(questionclass.option.options[0])
         self.b1.toggled.connect(lambda: self.btnstate(self.b1))
         layout.addRow(self.b1)
 
-        self.b2 = QRadioButton("B. " )
+        self.b2 = QRadioButton(questionclass.option.options[1])
         self.b2.toggled.connect(lambda: self.btnstate(self.b2))
         layout.addRow(self.b2)
 
-        self.b3 = QRadioButton("C. ")
+        self.b3 = QRadioButton(questionclass.option.options[2])
         self.b3.toggled.connect(lambda: self.btnstate(self.b3))
         layout.addRow(self.b3)
 
-        self.b4 = QRadioButton("D. ")
+        self.b4 = QRadioButton(questionclass.option.options[3])
         self.b4.toggled.connect(lambda: self.btnstate(self.b4))
         layout.addRow(self.b4)
 
-        self.b5 = QRadioButton("E. ")
+        self.b5 = QRadioButton(questionclass.option.options[4])
         self.b5.toggled.connect(lambda: self.btnstate(self.b5))
         layout.addRow(self.b5)
 
@@ -113,7 +112,6 @@ class MultipleChoice(QWidget, QuestionType):
                 self.setuseranswer('E')
             else:
                 print(ans + " is deselected")
-
 
 class TrueFalse(QWidget, QuestionType):
     def __init__(self,questionclass, parent=None):

@@ -8,59 +8,29 @@ import Quiz as quiz
 import UserAnswer as userAnswer
 import QAPair as qapair
 import QuizEvaluator as evaluator
+import pickle
 
 class QuizApplication(QWidget):
-    def __init__(self):
+    def __init__(self, quiz_):
         super(QuizApplication, self).__init__()
         self.leftlist = QListWidget()
 
         self.stack = []
-
-        q1 = question.Question(1, "MultipleChoice", "How going to do", "A")
-        q2 = question.Question(2, "Fill", "What is your name", "a", "speech_organ.jpg")
-        q3 = question.Question(3, "TrueFalse", "Am I handsome? ", "true", "speech_organ.jpg")
-        q4 = question.Question(4, "MultipleChoice", "Select the following sentence", "B")
-        q5 = question.Question(5, "Fill", "How old are you? ", "a", "speech_organ.jpg")
-        q6 = question.Question(6, "MultipleChoice", "What is current temperature?", "C")
-        q7 = question.Question(7, "Fill", "Where is my food?", "Refridgerator")
-        q8 = question.Question(8, "TrueFalse", "Today is the bad day", "true")
-        q9 = question.Question(9, "Fill", "What is the distance between KMITL and home?", "100")
-        q10 = question.Question(10,"MultipleChoice", "How old is my mother", "C")
-
-        self.quiz = quiz.Quiz(1)
-        self.quiz.addQuestion(q1)
-        self.quiz.addQuestion(q2)
-        self.quiz.addQuestion(q3)
-        self.quiz.addQuestion(q4)
-        self.quiz.addQuestion(q5)
-        self.quiz.addQuestion(q6)
-        self.quiz.addQuestion(q7)
-        self.quiz.addQuestion(q8)
-        self.quiz.addQuestion(q9)
-        self.quiz.addQuestion(q10)
+        self.quiz = quiz_
 
         self.useranswer = userAnswer.UserAnswerList(1)
         self.quizEvaluator = evaluator.QuizEvaluator(self.useranswer, self.quiz)
 
-        #Create question tabs
+        #Layouting and creating question tabs
         for i in range(self.quiz.getSize()):
-            self.addQuestionTab(i, 'question' + str(i + 1))
-
-        #create new QWidget based on number of tabs
-        for i in range(len(self.leftlist)):
-            self.addNewQuestion()
-
-        self.stack[0].setLayout(self.CreateMultipleChoiceQuestion(q1))
-        self.stack[1].setLayout(self.CreateFillInAnswerQuestion(q2))
-        self.stack[2].setLayout(self.CreateTrueFalseQuestion(q3))
-        self.stack[3].setLayout(self.CreateMultipleChoiceQuestion(q4))
-        self.stack[4].setLayout(self.CreateFillInAnswerQuestion(q5))
-        self.stack[5].setLayout(self.CreateMultipleChoiceQuestion(q6))
-        self.stack[6].setLayout(self.CreateFillInAnswerQuestion(q7))
-        self.stack[7].setLayout(self.CreateTrueFalseQuestion(q8))
-        self.stack[8].setLayout(self.CreateFillInAnswerQuestion(q9))
-        self.stack[9].setLayout(self.CreateMultipleChoiceQuestion(q10))
-
+            self.addQuestionTab(i, self.quiz.questions[i].questionID)
+            self.addNewQuestion() #QWidget
+            if self.quiz.questions[i].getQuestionType() == "MultipleChoice":
+                self.stack[i].setLayout(self.CreateMultipleChoiceQuestion(self.quiz.questions[i]))
+            elif self.quiz.questions[i].getQuestionType() == "TrueFalse":
+                self.stack[i].setLayout(self.CreateTrueFalseQuestion(self.quiz.questions[i]))
+            elif self.quiz.questions[i].getQuestionType() == "Fill":
+                self.stack[i].setLayout(self.CreateFillInAnswerQuestion(self.quiz.questions[i]))
 
         #Create a StackWidget containing each QWidget in each tab
         self.Stack = QStackedWidget(self)
@@ -87,7 +57,7 @@ class QuizApplication(QWidget):
 
         self.show()
 
-    def  clearAnswerList(self):
+    def clearAnswerList(self):
         del self.useranswer.getAnswerList()[:]
 
     #Get All studentAnswer and return
@@ -223,9 +193,46 @@ class QuizApplication(QWidget):
     def display(self, i):
         self.Stack.setCurrentIndex(i)
 
+def parseToQuizzes(fn):
+    f = open(fn, "r")
+    quizzes = []
+    for line in f:
+        line = line.strip()
+        if line == '#':
+            pass
+            quizzes.append(quiz_)
+        elif len(line) < 10:
+            quiz_ = quiz.Quiz(line)
+        else:
+            e = line.split('%')
+            qname = e[0]
+            question_ = e[2]
+            if e[3] != 'none':
+                if e[1] == 'MultipleChoice':
+                    options = e[4].split(',')
+                    answer = e[5]
+                    s = question.Question(qname, e[1], question_, answer, question.Options(options), e[3])
+                else:
+                    answer = e[4]
+                    s = question.Question(qname, e[1], question_, answer, questionImage = e[3])
+            else:
+                if e[1] == 'MultipleChoice':
+                    options = e[4].split(',')
+                    answer = e[5]
+                    s = question.Question(qname, e[1], question_, answer, question.Options(options))
+                else:
+                    answer = e[4]
+                    s = question.Question(qname, e[1], question_, answer)
+            quiz_.addQuestion(s)
+    return quizzes
+
 def main():
     app = QApplication(sys.argv)
-    ex = QuizApplication()
+    quizzes = parseToQuizzes("quizzes.txt")
+    for e in quizzes:
+        if e.id == "quiz2":
+            quiz_ = e
+    ex = QuizApplication(quiz_)
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
