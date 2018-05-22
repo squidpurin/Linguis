@@ -53,11 +53,6 @@ class MultipleChoice(QWidget, QuestionType):
             imagelabel.setFixedSize(width, height)
             layout.addRow(imagelabel)
 
-##        for i in range(len(questionclass.option.options)):
-##            self.buttons.append(QRadioButton(questionclass.option.options[i]))
-##            self.buttons[i].toggled.connect(lambda: self.btnstate(self.buttons[i]))
-##            layout.addRow(self.buttons[i])
-
         self.b1 = QRadioButton(questionclass.option.options[0])
         self.b1.toggled.connect(lambda: self.btnstate(self.b1))
         layout.addRow(self.b1)
