@@ -1,26 +1,35 @@
-class Register:
-    def __init__(self, uid, password, email):
-        self.uid = uid
-        self.pw = password
-        self.email = email
-        self.createUser()
+import pickle
+from user import *
+from PasswordVerifier import *
 
-    def createUser(self):
+class Register(PasswordVerifier):
+    def __init__(self):
+        PasswordVerifier.__init__(self)
+        self.user = None
+
+    def createUser(self,user):
+        self.user = user
         if self.is_duplicate():
             pass
             #loop back
         else:
             #load db user
-            ulist = pickle.load(open("userlist.p","rb"))
-            new_user = User(self.uid, self.name, self.pw, self.email)
-            ulist.append(new_user)
-            pickle.dump(ulist, open("userlist.p","wb"))
+            print(type(self.user))
+            if(type(self.user) == User):
+                ulist = pickle.load(open("userlist.p","rb"))
+                new_user = self.user
+                ulist.append(new_user)
+                pickle.dump(ulist, open("userlist.p","wb"))
+            else:
+                print("Object is not User")
 
-    def is_duplicate():
+
+
+    def is_duplicate(self):
         #load db
-        ulist = pickle.load(open("userlist.p","rb"))
+        uList = pickle.load(open("userlist.p","rb"))
         for p in uList:
-           if p.uid == self.uid:
+           if p.uid == self.username:
                return True
         return False
-            
+
