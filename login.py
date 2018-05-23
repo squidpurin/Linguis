@@ -1,20 +1,23 @@
 import mainApp as ma
 import pickle
+from PasswordVerifier import *
 
-class Login:
+class Login(PasswordVerifier):
     def __init__(self, uid, password):
-        self.uid = uid
-        self.pw = password
+        PasswordVerifier.__init__(self)
+        self.username = uid
+        self.password = password
         #import uList
         self.uList = pickle.load(open("userlist.p","rb"))
         self.mainApp = None
         self.openApp()
 
     def match(self):
-        for p in in self.uList:
-            if p.uid = self.uid and p.pw = self.pw
-                return true
-        pass
+        for p in self.uList:
+            if (p.getUserName() == self.username) and (p.getPassword() == self.password):
+                return True
+        return False
+
 
     def openApp(self):
         if self.match():
