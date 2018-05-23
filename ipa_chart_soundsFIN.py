@@ -182,22 +182,23 @@ class MapperF:
                 self.mapping[key] = [sound_file]
 
 class AudioPlayer:
-    def __init__(self, mapper):
+    def __init__(self):
         self.mapper = MapperF()
-        self.p = pyaudio.PyAudio()
         
     def play_audio(self, phoneme):
-        fn = self.mapper[phoneme]
+        self.p = pyaudio.PyAudio()
+        fn = self.mapper.mapping[phoneme]
         chunk = 1024
-        f = wave.open(fn,"rb")
+        f = wave.open("./sounds/" + fn,"rb")
         stream = self.p.open(format = self.p.get_format_from_width(f.getsampwidth()),  
                 channels = f.getnchannels(),  
                 rate = f.getframerate(),  
                 output = True)
-        data = f.readframes(chunk)  
+        data = f.readframes(chunk)
         while data:  
             stream.write(data)  
-            data = f.readframes(chunk)  
-        stream.stop_stream()  
+            data = f.readframes(chunk)
+        stream.stop_stream()
         stream.close()  
         self.p.terminate()
+        f.close()

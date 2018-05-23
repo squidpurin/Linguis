@@ -118,8 +118,8 @@ import copy, os, pyaudio, wave
 from pydub import AudioSegment
 
 class Text2Speech:
-    def __init__(self, mapper):
-        self.mapper = mapper
+    def __init__(self):
+        self.mapper = Mapper()
 
     def decode(self, text):
         text = list(text)
@@ -136,12 +136,12 @@ class Text2Speech:
         text = list(filter(lambda a: a != '', text))
         for i in range(len(text)):
             text[i] = self.mapper.mapping[text[i]]
-        print(text)
+        return text
 
     def wav_combine(self, seq):
-        sequence = AudioSegment.from_wav("null.wav")
+        sequence = AudioSegment.from_wav("./shortened_sound/null.wav")
         for phoneme in seq:
-            sequence += AudioSegment.from_wav(phoneme)
+            sequence += AudioSegment.from_wav("./shortened_sound/" + phoneme)
         sequence.export("sequence.wav", format="wav")
         self.play_audio("sequence.wav")
         os.remove("sequence.wav")
