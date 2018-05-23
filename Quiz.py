@@ -1,15 +1,15 @@
 import QAPair as pair
 class Quiz:
-    def __init__(self,id,name = ""):
-        self.id = id
+    def __init__(self,qid,name = ""):
+        self.id = qid
         self.name = name
+        self.questions = []
         self.questionanswerlist = []
-
     def addQuestion(self, question):
         if(type(question).__name__ == 'Question'):
             tmp = pair.QAPair(question.getQuestionText(),question.getAnswer())
             self.questionanswerlist.append(tmp)
-
+            self.questions.append(question)
     def getAnswer(self):
         tmp = []
         for i in self.questionanswerlist:

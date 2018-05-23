@@ -1,1 +1,0 @@
-prnit("Quiz Generator")
