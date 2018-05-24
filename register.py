@@ -1,6 +1,7 @@
 import pickle
 from user import *
 from PasswordVerifier import *
+from reportFIN import *
 
 class Register(PasswordVerifier):
     def __init__(self):
@@ -20,6 +21,8 @@ class Register(PasswordVerifier):
                 new_user = self.user
                 ulist.append(new_user)
                 pickle.dump(ulist, open("userlist.p","wb"))
+                s = Reporter(self.user)
+                s.report("Registered")
             else:
                 print("Object is not User")
 
@@ -31,3 +34,5 @@ class Register(PasswordVerifier):
                return True
         return False
 
+h = Register()
+h.createUser(User("babi", "khinzir", "a@bcd.efg", "1234", "abcd0AVC"))

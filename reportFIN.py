@@ -7,17 +7,12 @@ class Reporter:
         self.server.ehlo()
         self.server.starttls()
         self.server.ehlo()
-        self.server.login('linguissep@yahoo.com','mihhemqaqpqiiiujut')
-    def reportProblem(self, msg):
-        #get user email, id, name from user
-        ###################################
-        email = "lhagvsmrner@hmtm.idz"
-        name = "opilaneisa"
-        msg = "\n"+email+name+msg
+        self.server.login('linguissep@yahoo.com','5859lsep')
+    def report(self, msg):
+        email = self.user.email
+        name = self.user.firstname + ' ' + self.user.lastname
+        msg = "\n"+email+'\n'+name+'\n'+msg
         print(msg)
-        self.server.sendmail("linguissep@yahoo.com","c.dswibowo@yahoo.com.tw",msg)
+        self.server.sendmail("linguissep@yahoo.com","linguissep@yahoo.com",msg)
         print("mg sent")
         self.server.quit()
-        
-r = Reporter("ahmadabad")
-r.reportProblem("aiuma")

@@ -45,7 +45,7 @@ class RegistrationUI(QWidget):
         windowLayout = QVBoxLayout()
 
 
-        image = QPixmap("SEP_Images/speech_organ.jpg")
+        image = QPixmap("SEP_Images/logo/Linguis_Logo_F_T.png")
         pic = QLabel()
         width = 300
         height = image.scaledToWidth(width).height()

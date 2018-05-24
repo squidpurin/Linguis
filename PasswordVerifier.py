@@ -5,6 +5,6 @@ class PasswordVerifier(object):
             if not re.search("[a-z]", userp):
                 if not re.search("[0-9]", userp):
                     if not re.search("[A-Z]", userp):
-                        if re.search("\s", userp):
+                        if not re.search("\s", userp):
                             return True
         return False
