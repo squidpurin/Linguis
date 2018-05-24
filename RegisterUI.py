@@ -47,12 +47,14 @@ class RegistrationUI(QWidget):
 
         image = QPixmap("SEP_Images/logo/Linguis_Logo_F_T.png")
         pic = QLabel()
-        width = 300
+
+        width = 200
         height = image.scaledToWidth(width).height()
+
         pic.setPixmap(image.scaledToWidth(width))
         pic.setFixedSize(width, height)
-        windowLayout.addWidget(pic)
 
+        windowLayout.addWidget(pic)
         windowLayout.addWidget(self.horizontalGroupBox)
         self.setLayout(windowLayout)
 
@@ -213,9 +215,6 @@ class LoginWidget(QWidget):
             pass
         else:
             print("Invalid ID or Password")
-
-
-
 
 def main():
     app = QApplication(sys.argv)
