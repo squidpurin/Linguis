@@ -57,6 +57,10 @@ class QuizApplication(QWidget):
 
         self.show()
 
+    #Display the question with respect to the question number
+    def display(self, i):
+        self.Stack.setCurrentIndex(i)
+
     def clearAnswerList(self):
         del self.useranswer.getAnswerList()[:]
 
@@ -188,10 +192,6 @@ class QuizApplication(QWidget):
             tmp = MultipleChoice(question)
             layout.addRow(tmp)
         return layout
-
-    #Display the question with respect to the question number
-    def display(self, i):
-        self.Stack.setCurrentIndex(i)
 
 def parseToQuizzes(fn):
     f = open(fn, "r")
