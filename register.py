@@ -23,8 +23,6 @@ class Register(PasswordVerifier):
             else:
                 print("Object is not User")
 
-
-
     def is_duplicate(self):
         #load db
         uList = pickle.load(open("userlist.p","rb"))
