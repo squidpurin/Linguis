@@ -23,6 +23,8 @@ class Register(PasswordVerifier):
                 pickle.dump(ulist, open("userlist.p","wb"))
                 s = Reporter(self.user)
                 s.report("Registered")
+                s = Notifier(self.user)
+                s.notify("Thank you for registering Linguis!")
             else:
                 print("Object is not User")
 
@@ -30,9 +32,9 @@ class Register(PasswordVerifier):
         #load db
         uList = pickle.load(open("userlist.p","rb"))
         for p in uList:
-           if p.uid == self.username:
+           if p.username == self.user.username:
                return True
         return False
 
 h = Register()
-h.createUser(User("babi", "khinzir", "a@bcd.efg", "1234", "abcd0AVC"))
+h.createUser(User("babi", "khinzir", "c.dswibowo@yahoo.com.tw", "1337", "abcd0AVC"))
