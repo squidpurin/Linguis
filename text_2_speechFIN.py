@@ -109,7 +109,9 @@ class Mapper:
                         'ɶ':'op_fr_r.wav',
                         'ɑ':'op_bk_u.wav',
                         'ɒ':'op_bk_r.wav',
-                        'ʰ':'aspirant.wav'}
+                        'ʰ':'aspirant.wav',
+                        '' :'null.wav',
+                        ' ':'null.wav'}
         def addMapper(self, key, sound_file):
             if key not in self.mapping:
                 self.mapping[key] = [sound_file]
@@ -133,6 +135,9 @@ class Text2Speech:
                 text[i+1] = ''
             elif text[i+1] == 'ː':
                 text[i+1] = copy.deepcopy(text[i])
+        if text[-1] == '\'':
+            text[-2] = text[-2] + "\'"
+            text[-1] = ''
         text = list(filter(lambda a: a != '', text))
         for i in range(len(text)):
             text[i] = self.mapper.mapping[text[i]]
@@ -148,16 +153,20 @@ class Text2Speech:
 
     def play_audio(self, fn):
         chunk = 1024
-        f = wave.open(fn,"rb")
-        p = pyaudio.PyAudio()
-        stream = p.open(format = p.get_format_from_width(f.getsampwidth()),  
-                channels = f.getnchannels(),  
-                rate = f.getframerate(),  
-                output = True)
-        data = f.readframes(chunk)  
-        while data:  
-            stream.write(data)  
+        try:
+            f = wave.open(fn,"rb")
+            p = pyaudio.PyAudio()
+            stream = p.open(format = p.get_format_from_width(f.getsampwidth()),  
+                    channels = f.getnchannels(),  
+                    rate = f.getframerate(),  
+                    output = True)
             data = f.readframes(chunk)  
-        stream.stop_stream()  
-        stream.close()  
-        p.terminate()
+            while data:  
+                stream.write(data)  
+                data = f.readframes(chunk)  
+            stream.stop_stream()  
+            stream.close()  
+            p.terminate()
+        except:
+            print(fn + "is not found")
+            
