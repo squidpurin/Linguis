@@ -8,6 +8,8 @@ class User(PasswordVerifier):
         self.email = email
         self.username = username
         self.password = password
+        self.favorites_phoneme = []
+        self.favorites_content = []
 
         #self.userData = ...................load userdata
     def getFirstName(self):
@@ -45,6 +47,22 @@ class User(PasswordVerifier):
             return True
         return False
 
+    def addFavoritePhoneme(self, phoneme):
+        self.favorites_phoneme.append(phoneme)
 
+    def delFavoritePhoneme(self, phoneme):
+        if phoneme in self.favorites_phoneme:
+            self.favorites_phoneme.remove(phoneme)
 
-    
+    def addFavoriteContent(self, page):
+        self.favorites_content.append(page)
+
+    def delFavoriteContent(self, page):
+        if page in self.favorites_content:
+            self.favorites_content.remove(page)
+
+    def getFavoritePhoneme(self):
+        return self.favorites_phoneme
+
+    def getFavoriteContent(self):
+        return self.favorites_content   

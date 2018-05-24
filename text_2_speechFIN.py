@@ -143,6 +143,24 @@ class Text2Speech:
             text[i] = self.mapper.mapping[text[i]]
         return text
 
+    def decodeNoMap(self, text):
+        text = list(text)
+        for i in range(len(text) - 2):
+            if text[i+1] == '͡':
+                text[i] = ''.join(text[i:i+3])
+                text[i+1] = ''
+                text[i+2] = ''
+            elif text[i+1] == '\'':
+                text[i] = ''.join(text[i:i+2])
+                text[i+1] = ''
+            elif text[i+1] == 'ː':
+                text[i+1] = copy.deepcopy(text[i])
+        if text[-1] == '\'':
+            text[-2] = text[-2] + "\'"
+            text[-1] = ''
+        text = list(filter(lambda a: a != '', text))
+        return text  
+
     def wav_combine(self, seq):
         sequence = AudioSegment.from_wav("./shortened_sound/null.wav")
         for phoneme in seq:

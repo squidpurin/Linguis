@@ -4,10 +4,12 @@ from PyQt5.QtWidgets import *
 from T2SIC import Ui_ot as Ui
 from text_2_speechFIN import *
 from ipa_chart_soundsFIN import *
+from user import *
 
 class IPALabUI(QMainWindow):
-    def __init__(self):
+    def __init__(self, user):
         QMainWindow.__init__(self, None)
+        self.user = user
         self.ui = Ui()
         self.ui.setupUi(self)
         self.ui.p.clicked.connect(self.clickPhoneme)
@@ -129,7 +131,11 @@ class IPALabUI(QMainWindow):
         self.ui.pron_mode.pressed.connect(self.modeSwitch)
         self.ui.t2s_mode.pressed.connect(self.modeSwitch)
         self.ui.t2s_input.setDisabled(True)
+        self.ui.t2s_pronunce.setDisabled(True)
         self.ui.t2s_pronunce.clicked.connect(self.pronunceAll)
+        
+        self.ui.fav_mode.pressed.connect(self.modeSwitch)
+        self.ui.addfav.clicked.connect(self.addFavorite)
         
     def modeSwitch(self):
         if self.sender().text() == "Pronunce alphabet mode":
@@ -137,25 +143,45 @@ class IPALabUI(QMainWindow):
             self.mode = 0
             self.ui.t2s_input.setText('')
             self.ui.t2s_input.setDisabled(True)
-        else:    
+            self.ui.t2s_pronunce.setDisabled(True)            
+        elif self.sender().text() == "Text-to-speech mode":
             self.player = Text2Speech()
             self.mode = 1
             self.ui.t2s_input.setDisabled(False)
+            self.ui.t2s_pronunce.setDisabled(False)
+        else:
+            self.mode = 2
+            self.ui.t2s_input.setText('')
+            self.ui.t2s_input.setDisabled(False)
+            self.ui.t2s_pronunce.setDisabled(True)
 
     def clickPhoneme(self):
         phoneme = self.sender().text()
         if self.mode == 0:
             self.player.play_audio(phoneme)
+        elif self.mode == 1:
+            self.ui.t2s_input.setText(self.ui.t2s_input.text() + phoneme)
         else:
             self.ui.t2s_input.setText(self.ui.t2s_input.text() + phoneme)
 
     def pronunceAll(self):
         sequence = self.player.decode(self.ui.t2s_input.text())
         self.player.wav_combine(sequence)
+
+    def addFavorite(self):
+        listOfPhonemes = self.ui.t2s_input.text()
+        decoder = Text2Speech()
+        listOfPhonemes = decoder.decodeNoMap(listOfPhonemes)
+        for phon in listOfPhonemes:
+            if phon not in self.user.getFavoritePhoneme():
+                self.user.addFavoritePhoneme(phon)
+        print (self.user.getFavoritePhoneme())
+        self.ui.t2s_input.setText('')        
         
 def main():
     app = QApplication(sys.argv)
-    w = IPALabUI()
+    bufferUser = User("A", "B", "C", "12354", "aA7;aaaa")
+    w = IPALabUI(bufferUser)
     w.show()
     return app.exec_()
 

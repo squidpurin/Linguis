@@ -2273,6 +2273,32 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="addfav">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>810</y>
+      <width>112</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="fav_mode">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>750</y>
+      <width>191</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add to Favorite mode</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
