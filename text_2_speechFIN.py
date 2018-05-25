@@ -1,3 +1,6 @@
+import copy, os, pyaudio, wave
+from pydub import AudioSegment
+
 class Mapper:
     def __init__(self):
         self.mapping = {'p':'vls_lbl_psv.wav',
@@ -115,9 +118,6 @@ class Mapper:
         def addMapper(self, key, sound_file):
             if key not in self.mapping:
                 self.mapping[key] = [sound_file]
-
-import copy, os, pyaudio, wave
-from pydub import AudioSegment
 
 class Text2Speech:
     def __init__(self):

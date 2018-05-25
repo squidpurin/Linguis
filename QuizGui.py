@@ -103,6 +103,7 @@ class QuizApplication(QWidget):
                         if(isinstance(item, QListWidgetItem)):
                             self.markAsCorrect(item)
             elem += 1
+
         result = self.quizEvaluator.getFinalScore()
         self.quizEvaluator.setFinalScore(result)
         msg = QMessageBox()

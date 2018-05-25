@@ -1,5 +1,5 @@
 from PasswordVerifier import *
-from IPALab_UI import *
+#from IPALab_UI import *
 from QuizGui import *
 
 class User(PasswordVerifier):
@@ -15,7 +15,7 @@ class User(PasswordVerifier):
         self.quizResult = {}
         self.mainUI = None
         self.pageUI = None
-        self.ipaLabUI = IPALabUI(self)
+        #self.ipaLabUI = IPALabUI(self)
         self.favUI = None
         self.quizUI = None
 
