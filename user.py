@@ -1,5 +1,8 @@
 from PasswordVerifier import *
-import IPALab_UI as ipalab
+try:
+    import IPALab_UI as ipalab
+except:
+    print("no pyaudio")
 import quizList
 
 class User(PasswordVerifier):
@@ -15,9 +18,12 @@ class User(PasswordVerifier):
         self.quizResult = {}
         self.mainUI = None
         self.pageUI = None
-        self.ipaLabUI = ipalab.IPALabUI(self)
+        self.quizUI = None #quizList.QuizList(self)
+        try:
+            self.ipaLabUI = ipalab.IPALabUI(self)
+        except:
+            print("no pyaudio 2")
         self.favUI = None
-        self.quizUI = quizList.QuizList(self)
         self.optionUI = None
 
         #self.userData = ...................load userdata

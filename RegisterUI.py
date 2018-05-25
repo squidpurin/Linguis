@@ -135,24 +135,29 @@ class RegistrationWidget(QWidget):
         newuser = user.User(self.firstname.text(), self.lastname.text(),self.email.text(), self.username.text(), self.password.text())
         print(self.firstname.text())
         print(self.confirmedpassword.text())
-
-        if (newuser.PasswordConfirmation(self.confirmedpassword.text())):
-            if not(newuser.passwordVerification(self.password.text())):
-                self.NotifyInvalidPasswordForm()
-                print("Warning Message Invalid form of password")
+        if(self.firstname.text() != "" or self.lastname.text() != "" or self.email.text() != ""
+                or self.username.text() != "" or self.password.text() != "" or self.confirmedpassword.text() != ""):
+            if (newuser.PasswordConfirmation(self.confirmedpassword.text())):
+                print(newuser.passwordVerification(self.password.text()))
+                if (newuser.passwordVerification(self.password.text())):
+                    self.register.createUser(newuser)
+                    print("Sign up a user successfully")
+                else:
+                    self.NotifyInvalidPasswordForm()
+                    print("Warning Message Invalid form of password")
             else:
-                self.register.createUser(newuser)
-                print("Sign up a user successfully")
+                self.NotifyUnmatchedPassword()
+                print("Cannot the password is not the same")
+
         else:
-            self.NotifyInvalidPassword()
-            print("Cannot the password is not the same")
+            self.NotifyImproperRegistration()
 
     #Notify invalid password
-    def NotifyInvalidPassword(self):
+    def NotifyUnmatchedPassword(self):
         invalid_box = QMessageBox()
         invalid_box.setIcon(QMessageBox.Warning)
         invalid_box.setText("Invalid Password")
-        invalid_box.setInformativeText("Invalid Password")
+        invalid_box.setInformativeText("Unmatched Password")
         invalid_box.setStandardButtons(QMessageBox.Ok)
         invalid_box.exec_()
 
@@ -162,6 +167,14 @@ class RegistrationWidget(QWidget):
         invalid_box.setIcon(QMessageBox.Warning)
         invalid_box.setText("Password Verification")
         invalid_box.setInformativeText("Password must contain at least 1 capital letter, and 1 number")
+        invalid_box.setStandardButtons(QMessageBox.Ok)
+        invalid_box.exec_()
+
+    def NotifyImproperRegistration(self):
+        invalid_box = QMessageBox()
+        invalid_box.setIcon(QMessageBox.Warning)
+        invalid_box.setText("Registration Failure")
+        invalid_box.setInformativeText("Please fill in further information")
         invalid_box.setStandardButtons(QMessageBox.Ok)
         invalid_box.exec_()
 
