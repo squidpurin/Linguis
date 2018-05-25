@@ -2,20 +2,22 @@ import sys
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from user import *
 
 import ipa_chart_soundsFIN as ipa
 
 class FavouriteUI(QWidget):
-    def __init__(self):
+    def __init__(self, user):
         super(FavouriteUI, self).__init__()
         self.phonemelist = QListWidget()
         self.contentlist = QListWidget()
+        self.user = user
 
         self.phonemestack = []
         self.contentstack = []
 
-        for favphoneme in range(10):
-            self.addPhonemeFavouriteTab(favphoneme, "phoneme" + str(favphoneme))
+        for num in range(len(user.favorites_phoneme)):
+            self.addPhonemeFavouriteTab(num, user.favorites_phoneme[num])
 
         for favcontent in range(10):
             self.addContentFavouriteTab(favcontent, "content" + str(favcontent))
@@ -31,7 +33,6 @@ class FavouriteUI(QWidget):
         #    self.Stack.addWidget(self.contentstack[i])
 
         windowLayout = QVBoxLayout()
-
 
         button = QPushButton("Back")
         button.setFixedSize(100,60)
@@ -94,12 +95,16 @@ class FavouriteUI(QWidget):
 
     def pronouncefavouritephoneme(self):
         audioplayer = ipa.AudioPlayer()
-        ipa.AudioPlayer("H")
+        listItems = self.phonemelist.selectedItems()
+        if not listItems:
+            return
+        for item in listItems:
+            to_play = item.text()
+        audioplayer.play_audio(to_play)
 
     #Show selected Content
     def readfavouritecontent(self):
         pass
-
 
     def deletefavouritephoneme(self):
         listItems = self.phonemelist.selectedItems()
@@ -107,6 +112,8 @@ class FavouriteUI(QWidget):
             return
         for item in listItems:
             self.phonemelist.takeItem(self.phonemelist.row(item))
+        self.user.delFavoritePhoneme(item.text())
+        print(self.user.favorites_phoneme)
 
     def deletefavouritecontent(self):
         listItems = self.contentlist.selectedItems()
@@ -121,7 +128,7 @@ class FavouriteUI(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    ex = FavouriteUI()
+    ex = FavouriteUI(User("A", "B", "C", "1515", "12ABhf--"))
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
