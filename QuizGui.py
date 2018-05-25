@@ -13,10 +13,10 @@ import pickle
 from user import *
 
 class QuizApplication(QWidget):
-    def __init__(self, quiz_, user):
+    def __init__(self, quiz_, user, parent = None):
         super(QuizApplication, self).__init__()
         self.leftlist = QListWidget()
-            
+
         self.stack = []
         self.user = user
         self.quiz = quiz_

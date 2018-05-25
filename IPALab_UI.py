@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-from T2SIC import Ui_ot as Ui
+from T2SIC import Ui_ot as Uii
 from text_2_speechFIN import *
 from ipa_chart_soundsFIN import *
 from user import *
@@ -10,7 +10,7 @@ class IPALabUI(QMainWindow):
     def __init__(self, user):
         QMainWindow.__init__(self, None)
         self.user = user
-        self.ui = Ui()
+        self.ui = Uii()
         self.ui.setupUi(self)
         self.ui.p.clicked.connect(self.clickPhoneme)
         self.ui.b.clicked.connect(self.clickPhoneme)

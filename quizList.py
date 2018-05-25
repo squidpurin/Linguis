@@ -14,6 +14,7 @@ class QuizList(QMainWindow):
         self.ui = Uiq()
         self.ui.setupUi(self)
         self.quizzes = parseToQuizzes("quizzes.txt")
+        self.subQuiz = None
 
         #Put all quizzes' name in the list
         count = 0
@@ -33,7 +34,10 @@ class QuizList(QMainWindow):
         for q in self.quizzes:
             if q.id == quiz_text:
                 quiz_ = q
-        qgui.QuizApplication(quiz_, self.user)
+        self.subQuiz = qgui.QuizApplication(quiz_, self.user, self)
+        #self.subQuiz.closed.connect(self.show)
+        self.subQuiz.show()
+        
 
 def parseToQuizzes(fn):
     f = open(fn, "r", encoding='utf-8-sig')
@@ -49,7 +53,6 @@ def parseToQuizzes(fn):
             e = line.split('%')
             qname = e[0]
             question_ = e[2]
-            print(e[3])
             if e[3] != 'none':
                 if e[1] == 'MultipleChoice':
                     options = e[4].split(',')
