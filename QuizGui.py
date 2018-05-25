@@ -8,6 +8,7 @@ import Quiz as quiz
 import UserAnswer as userAnswer
 import QAPair as qapair
 import QuizEvaluator as evaluator
+from quizList import *
 import pickle
 from user import *
 
@@ -58,7 +59,7 @@ class QuizApplication(QWidget):
         self.setWindowTitle('Quiz Demo')
 
         self.show()
-
+    
     #Display the question with respect to the question number
     def display(self, i):
         self.Stack.setCurrentIndex(i)
@@ -201,41 +202,6 @@ class QuizApplication(QWidget):
             tmp = MultipleChoice(question)
             layout.addRow(tmp)
         return layout
-
-def parseToQuizzes(fn):
-    f = open(fn, "r", encoding='utf-8-sig')
-    quizzes = []
-    for line in f:
-        line = line.strip()
-        if line == '#':
-            pass
-            quizzes.append(quiz_)
-        elif line.find('%') == -1:
-            quiz_ = quiz.Quiz(line)
-        else:
-            e = line.split('%')
-            qname = e[0]
-            question_ = e[2]
-            print(e[3])
-            if e[3] != 'none':
-                if e[1] == 'MultipleChoice':
-                    options = e[4].split(',')
-                    answer = e[5]
-                    s = question.Question(qname, e[1], question_, answer, question.Options(options), e[3])
-                else:
-                    answer = e[4]
-                    s = question.Question(qname, e[1], question_, answer, questionImage = e[3])
-            else:
-                if e[1] == 'MultipleChoice':
-                    options = e[4].split(',')
-                    answer = e[5]
-                    s = question.Question(qname, e[1], question_, answer, question.Options(options))
-                else:
-                    answer = e[4]
-                    s = question.Question(qname, e[1], question_, answer)
-            quiz_.addQuestion(s)
-    f.close()
-    return quizzes
 
 def main():
     app = QApplication(sys.argv)

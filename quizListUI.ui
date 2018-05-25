@@ -30,7 +30,7 @@
      <string>Quizzes</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="quizList">
+   <widget class="QListWidget" name="quiz_list">
     <property name="geometry">
      <rect>
       <x>30</x>

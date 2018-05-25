@@ -3,14 +3,14 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from mainAppUI import Ui_MainWindow as Ui
 from user import *
-from mainAppUI import Ui_MainWindow as Ui
+import quiz
 
 class MainMenu(QMainWindow):
     def __init__(self, user):
         QMainWindow.__init__(self, None)
         self.user = user
         self.ui = Ui()
-        self.ui.setupUi()
+        self.ui.setupUi(self)
         self.ui.btn_IPA.clicked.connect(self.user.ipaLabUI.show())
         self.ui.btn_Material.clicked.connect(self.user.pageUI.show())
         self.ui.btn_Quiz.clicked.connect(self.user.quizUI.show())
@@ -20,7 +20,7 @@ class MainMenu(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    bufferUser = User("A", "B", "C", "12354", "aA7;aaaa")
+    bufferUser = User("A", "B", "C", "12354", "aA7aaa")
     w = MainMenu(bufferUser)
     w.show()
     return app.exec_()
