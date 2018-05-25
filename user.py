@@ -1,4 +1,6 @@
 from PasswordVerifier import *
+from IPALab_UI import *
+from QuizGui import *
 
 class User(PasswordVerifier):
     def __init__(self,fname, lname, email, username, password):
@@ -10,6 +12,12 @@ class User(PasswordVerifier):
         self.password = password
         self.favorites_phoneme = []
         self.favorites_content = []
+        self.quizResult = {}
+        self.mainUI = None
+        self.pageUI = None
+        self.ipaLabUI = IPALabUI(self)
+        self.favUI = None
+        self.quizUI = None
 
         #self.userData = ...................load userdata
     def getFirstName(self):
