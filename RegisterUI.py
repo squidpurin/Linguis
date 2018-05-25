@@ -12,10 +12,6 @@ class RegistrationUI(QWidget):
     def __init__(self):
         super(RegistrationUI, self).__init__()
 
-        # p = self.palette()
-        # p.setColor(self.backgroundRole(), QColor("#A9E3FF"))
-        # self.setPalette(p)
-
         self.setWindowTitle("Login and Registration")
         self.setFixedSize(900,600)
 
@@ -65,7 +61,7 @@ class RegistrationWidget(QWidget):
         super(RegistrationWidget, self).__init__(parent)
         self.register = register.Register()
 
-
+        #Attribuites for all information added to user registration
         self.firstname = QLineEdit()
         self.lastname = QLineEdit()
         self.email = QLineEdit()
@@ -129,6 +125,7 @@ class RegistrationWidget(QWidget):
         Label6.setAlignment(Qt.AlignLeft)
         flo.addRow(Label6, self.confirmedpassword)
 
+        #Sign up button
         signupButton = QPushButton("Sign Up")
         signupButton.clicked.connect(self.signup)
         signupButton.setFixedWidth(100)
@@ -137,18 +134,41 @@ class RegistrationWidget(QWidget):
         self.setLayout(flo)
         self.setFixedSize(400, 500)
 
+    #Add user profile into the pickledb system
     def signup(self):
         newuser = user.User(self.firstname.text(), self.lastname.text(),self.email.text(), self.username.text(), self.password.text())
         print(self.firstname.text())
         print(self.confirmedpassword.text())
+
         if (newuser.PasswordConfirmation(self.confirmedpassword.text())):
             if not(newuser.passwordVerification(self.password.text())):
+                self.NotifyInvalidPasswordForm()
                 print("Warning Message Invalid form of password")
             else:
                 self.register.createUser(newuser)
                 print("Sign up a user successfully")
         else:
+            self.NotifyInvalidPassword()
             print("Cannot the password is not the same")
+
+    #Notify invalid password
+    def NotifyInvalidPassword(self):
+        invalid_box = QMessageBox()
+        invalid_box.setIcon(QMessageBox.Warning)
+        invalid_box.setText("Invalid Password")
+        invalid_box.setInformativeText("Invalid Password")
+        invalid_box.setStandardButtons(QMessageBox.Ok)
+        invalid_box.exec_()
+
+    #Notify invalid password form
+    def NotifyInvalidPasswordForm(self):
+        invalid_box = QMessageBox()
+        invalid_box.setIcon(QMessageBox.Warning)
+        invalid_box.setText("Password Verification")
+        invalid_box.setInformativeText("Password must contain at least 1 capital letter, and 1 number")
+        invalid_box.setStandardButtons(QMessageBox.Ok)
+        invalid_box.exec_()
+
 
 
 class LoginWidget(QWidget):
@@ -201,6 +221,7 @@ class LoginWidget(QWidget):
 
         self.setLayout(flo)
 
+    #Method called after click radioButton Remember me
     def Rememberme(self, b):
         ans = b.text()
         if ans == "Remember me":
@@ -209,12 +230,25 @@ class LoginWidget(QWidget):
             else:
                 print(ans + " is deselected")
 
+    #Login Appplication
     def LoginApp(self):
         userlogin  = login.Login(self.username, self.password)
         if(userlogin.match()):
+            #Switch to other pages
             pass
         else:
+            #In case that the password is invalid
+            self.NotifyInvalidUserPassword()
             print("Invalid ID or Password")
+
+    #Information box display when invalid username or password
+    def NotifyInvalidUserPassword(self):
+        invalid_box = QMessageBox()
+        invalid_box.setIcon(QMessageBox.Information)
+        invalid_box.setText("Login Failure")
+        invalid_box.setInformativeText("Invalid username or password")
+        invalid_box.setStandardButtons(QMessageBox.Ok)
+        invalid_box.exec_()
 
 def main():
     app = QApplication(sys.argv)

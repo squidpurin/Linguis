@@ -28,16 +28,24 @@ class FavouriteUI(QWidget):
         #for i in range(len(self.leftlist)):
         #    self.Stack.addWidget(self.contentstack[i])
 
+        windowLayout = QVBoxLayout()
+
+
+        button = QPushButton("Back")
+        button.setFixedSize(100,60)
+
+        windowLayout.addWidget(button)
+
+
         self.phonemelist.setFixedSize(300, 400)
         self.contentlist.setFixedSize(300, 400)
-
-        hbox = QHBoxLayout(self)
-        left = QFormLayout(self)
-        right = QFormLayout(self)
+        hbox = QHBoxLayout()
+        left = QFormLayout()
+        right = QFormLayout()
 
         phonemetitle = QLabel("Favourite Phoneme")
         splitter1 = QLabel("-" * 60)
-        phonemetitle.setFont(QFont("Times", 30, QFont.Bold))
+        phonemetitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         left.addRow(phonemetitle)
         left.addRow(splitter1)
 
@@ -52,7 +60,7 @@ class FavouriteUI(QWidget):
 
         contenttitle = QLabel("Favourite Content")
         splitter2 = QLabel("-" * 60)
-        contenttitle.setFont(QFont("Times", 30, QFont.Bold))
+        contenttitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         right.addRow(contenttitle)
         right.addRow(splitter2)
 
@@ -72,8 +80,9 @@ class FavouriteUI(QWidget):
 
         hbox.addLayout(left)
         hbox.addLayout(right)
+        windowLayout.addLayout(hbox)
 
-        self.setLayout(hbox)
+        self.setLayout(windowLayout)
         self.phonemelist.currentRowChanged.connect(self.display)
         self.contentlist.currentRowChanged.connect(self.display)
         self.setFixedSize(900, 600)
@@ -101,6 +110,8 @@ class FavouriteUI(QWidget):
     def display(self, i):
         self.PhonemeStack.setCurrentIndex(i)
         self.ContentStack.setCurrentIndex(i)
+
+
 def main():
     app = QApplication(sys.argv)
     ex = FavouriteUI()
