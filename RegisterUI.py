@@ -40,7 +40,6 @@ class RegistrationUI(QWidget):
         self.horizontalGroupBox.setLayout(layout)
         windowLayout = QVBoxLayout()
 
-
         image = QPixmap("SEP_Images/logo/Linguis_Logo_F_T.png")
         pic = QLabel()
 
@@ -53,8 +52,6 @@ class RegistrationUI(QWidget):
         windowLayout.addWidget(pic)
         windowLayout.addWidget(self.horizontalGroupBox)
         self.setLayout(windowLayout)
-
-        self.show()
 
 class RegistrationWidget(QWidget):
     def __init__(self, parent = None):
@@ -75,7 +72,7 @@ class RegistrationWidget(QWidget):
         flo = QFormLayout()
         Registrationtitle = QLabel("Registration")
         splitter2 = QLabel("-" * 60)
-        Registrationtitle.setFont(QFont("Times", 30, QFont.Bold))
+        Registrationtitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         Registrationtitle.setStyleSheet('color: black')
         splitter2.setStyleSheet('color: black')
 
@@ -102,7 +99,6 @@ class RegistrationWidget(QWidget):
         Label3.setStyleSheet('color: black')
         Label3.setAlignment(Qt.AlignLeft)
         flo.addRow(Label3, self.email)
-
 
         #Username
         Label4 = QLabel("{:<31}".format('Username'))
@@ -169,8 +165,6 @@ class RegistrationWidget(QWidget):
         invalid_box.setStandardButtons(QMessageBox.Ok)
         invalid_box.exec_()
 
-
-
 class LoginWidget(QWidget):
     def __init__(self, parent=None):
         super(LoginWidget, self).__init__(parent)
@@ -179,7 +173,7 @@ class LoginWidget(QWidget):
 
         Logintitle = QLabel("Login")
         splitter1 = QLabel("-" * 60)
-        Logintitle.setFont(QFont("Times", 30, QFont.Bold))
+        Logintitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         flo.addRow(Logintitle)
         flo.addRow(splitter1)
 
@@ -253,6 +247,7 @@ class LoginWidget(QWidget):
 def main():
     app = QApplication(sys.argv)
     ex = RegistrationUI()
+    ex.show()
     sys.exit(app.exec_())
 
 if __name__ == '__main__':

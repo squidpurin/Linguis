@@ -27,7 +27,7 @@ class Updater:
         #remove empty files
         for dirName, subdirList, fileList in os.walk(self.mainAppPath):
             for fname in fileList:
-                if os.stat(dirName + "\\" + fname).st_size == 0:
+                if os.stat(dirName + "\\" + fname).st_size == 0 && fname[-2:0]:
                     os.remove(dirName + "\\" + fname)
         #delete updater cache
         os.remove(self.path)

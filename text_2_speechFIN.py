@@ -161,13 +161,16 @@ class Text2Speech:
         text = list(filter(lambda a: a != '', text))
         return text  
 
-    def wav_combine(self, seq):
+    def wav_combine(self, seq, fn = None):
         sequence = AudioSegment.from_wav("./shortened_sound/null.wav")
         for phoneme in seq:
             sequence += AudioSegment.from_wav("./shortened_sound/" + phoneme)
-        sequence.export("sequence.wav", format="wav")
-        self.play_audio("sequence.wav")
-        os.remove("sequence.wav")
+        if fn == None:
+            sequence.export("sequence.wav", format="wav")
+            self.play_audio("sequence.wav")
+            os.remove("sequence.wav")
+        else:
+            sequence.export(fn, format="wav")
 
     def play_audio(self, fn):
         chunk = 1024

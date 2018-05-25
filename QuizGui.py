@@ -8,17 +8,19 @@ import Quiz as quiz
 import UserAnswer as userAnswer
 import QAPair as qapair
 import QuizEvaluator as evaluator
+from quizList import *
 import pickle
 from user import *
 
 class QuizApplication(QWidget):
-    def __init__(self, quiz_, user):
+    def __init__(self, quiz_, user, parent = None):
         super(QuizApplication, self).__init__()
         self.leftlist = QListWidget()
-            
+
         self.stack = []
         self.user = user
         self.quiz = quiz_
+        self.parent = parent
 
         self.useranswer = userAnswer.UserAnswerList(1)
         self.quizEvaluator = evaluator.QuizEvaluator(self.useranswer, self.quiz)
@@ -46,10 +48,18 @@ class QuizApplication(QWidget):
         hbox.addWidget(self.leftlist)
         hbox.addWidget(self.Stack)
 
-        #Create SubmitButton
+        #Create Submit Button
         confirmbtn = QPushButton('Submit')
         confirmbtn.clicked.connect(self.submitAnswer)
-        hbox.addWidget(confirmbtn)
+
+        #Create Exit Button
+        exitbtn = QPushButton('Quit quiz')
+        exitbtn.clicked.connect(self.exitQuiz)
+
+        vbox = QVBoxLayout(self)
+        hbox.addLayout(vbox)
+        vbox.addWidget(confirmbtn)
+        vbox.addWidget(exitbtn)
 
         #Create the layout
         self.setLayout(hbox)
@@ -203,40 +213,9 @@ class QuizApplication(QWidget):
             layout.addRow(tmp)
         return layout
 
-def parseToQuizzes(fn):
-    f = open(fn, "r", encoding='utf-8-sig')
-    quizzes = []
-    for line in f:
-        line = line.strip()
-        if line == '#':
-            pass
-            quizzes.append(quiz_)
-        elif line.find('%') == -1:
-            quiz_ = quiz.Quiz(line)
-        else:
-            e = line.split('%')
-            qname = e[0]
-            question_ = e[2]
-            print(e[3])
-            if e[3] != 'none':
-                if e[1] == 'MultipleChoice':
-                    options = e[4].split(',')
-                    answer = e[5]
-                    s = question.Question(qname, e[1], question_, answer, question.Options(options), e[3])
-                else:
-                    answer = e[4]
-                    s = question.Question(qname, e[1], question_, answer, questionImage = e[3])
-            else:
-                if e[1] == 'MultipleChoice':
-                    options = e[4].split(',')
-                    answer = e[5]
-                    s = question.Question(qname, e[1], question_, answer, question.Options(options))
-                else:
-                    answer = e[4]
-                    s = question.Question(qname, e[1], question_, answer)
-            quiz_.addQuestion(s)
-    f.close()
-    return quizzes
+    def exitQuiz(self):
+        self.hide()
+        self.parent.show()
 
 def main():
     app = QApplication(sys.argv)
