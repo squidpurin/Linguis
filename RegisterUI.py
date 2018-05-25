@@ -222,9 +222,10 @@ class LoginWidget(QWidget):
         self.b1.stateChanged.connect(lambda: self.Rememberme(self.b1))
         flo.addRow(self.b1)
 
-        signupButton = QPushButton("Login")
-        signupButton.setFixedWidth(100)
-        flo.addRow(signupButton)
+        signinButton = QPushButton("Login")
+        signinButton.clicked.connect(self.LoginApp)
+        signinButton.setFixedWidth(100)
+        flo.addRow(signinButton)
 
         self.setLayout(flo)
 
@@ -240,8 +241,11 @@ class LoginWidget(QWidget):
     #Login Appplication
     def LoginApp(self):
         userlogin  = login.Login(self.username, self.password)
+        print(userlogin.match())
         if(userlogin.match()):
             #Switch to other pages
+            #test showing the messagebox
+            self.NotifyValidUserPassword()
             pass
         else:
             #In case that the password is invalid
@@ -256,6 +260,15 @@ class LoginWidget(QWidget):
         invalid_box.setInformativeText("Invalid username or password")
         invalid_box.setStandardButtons(QMessageBox.Ok)
         invalid_box.exec_()
+
+    def NotifyValidUserPassword(self):
+        invalid_box = QMessageBox()
+        invalid_box.setIcon(QMessageBox.Information)
+        invalid_box.setText("Login Successfully")
+        invalid_box.setInformativeText("Valid naja")
+        invalid_box.setStandardButtons(QMessageBox.Ok)
+        invalid_box.exec_()
+
 
 def main():
     app = QApplication(sys.argv)

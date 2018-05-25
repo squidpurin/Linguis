@@ -16,14 +16,14 @@ class Login(PasswordVerifier):
 
     def match(self):
         for p in self.uList:
-            if (p.getUserName() == self.username) and (p.getPassword() == self.password):
+            if (p.getUserName() == self.username.text()) and (p.getPassword() == self.password.text()):
                 self.user = p
                 return True
         return False
 
     def openApp(self):
         if self.match():
-            self.mainApp = ma.MainApp(self.user)
+            self.mainApp = ma.MainMenu(self.user)
         else:
             pass #loop back
 
