@@ -1,6 +1,7 @@
 import mainApp as ma
 import pickle
 from PasswordVerifier import *
+from mainMenu import *
 
 class Login(PasswordVerifier):
     def __init__(self, uid, password):
@@ -17,7 +18,6 @@ class Login(PasswordVerifier):
             if (p.getUserName() == self.username) and (p.getPassword() == self.password):
                 return True
         return False
-
 
     def openApp(self):
         if self.match():

@@ -54,8 +54,6 @@ class RegistrationUI(QWidget):
         windowLayout.addWidget(self.horizontalGroupBox)
         self.setLayout(windowLayout)
 
-        self.show()
-
 class RegistrationWidget(QWidget):
     def __init__(self, parent = None):
         super(RegistrationWidget, self).__init__(parent)
@@ -253,6 +251,7 @@ class LoginWidget(QWidget):
 def main():
     app = QApplication(sys.argv)
     ex = RegistrationUI()
+    ex.show()
     sys.exit(app.exec_())
 
 if __name__ == '__main__':

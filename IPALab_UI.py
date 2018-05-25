@@ -91,7 +91,6 @@ class IPALabUI(QMainWindow):
         self.ui.w.clicked.connect(self.clickPhoneme)
         self.ui.aeg.clicked.connect(self.clickPhoneme)
         self.ui.xeg.clicked.connect(self.clickPhoneme)
-        self.ui.ts.clicked.connect(self.clickPhoneme)
         self.ui.zy.clicked.connect(self.clickPhoneme)
         self.ui.lll.clicked.connect(self.clickPhoneme)
         self.ui.kp.clicked.connect(self.clickPhoneme)
@@ -132,10 +131,13 @@ class IPALabUI(QMainWindow):
         self.ui.t2s_mode.pressed.connect(self.modeSwitch)
         self.ui.t2s_input.setDisabled(True)
         self.ui.t2s_pronunce.setDisabled(True)
+        self.ui.savePron.setDisabled(True)
         self.ui.t2s_pronunce.clicked.connect(self.pronunceAll)
         
         self.ui.fav_mode.pressed.connect(self.modeSwitch)
         self.ui.addfav.clicked.connect(self.addFavorite)
+
+        self.ui.savePron.clicked.connect(self.savePronunciation)
         
     def modeSwitch(self):
         if self.sender().text() == "Pronunce alphabet mode":
@@ -143,17 +145,20 @@ class IPALabUI(QMainWindow):
             self.mode = 0
             self.ui.t2s_input.setText('')
             self.ui.t2s_input.setDisabled(True)
-            self.ui.t2s_pronunce.setDisabled(True)            
+            self.ui.t2s_pronunce.setDisabled(True)
+            self.ui.savePron.setDisabled(True)
         elif self.sender().text() == "Text-to-speech mode":
             self.player = Text2Speech()
             self.mode = 1
             self.ui.t2s_input.setDisabled(False)
             self.ui.t2s_pronunce.setDisabled(False)
+            self.ui.savePron.setDisabled(False)
         else:
             self.mode = 2
             self.ui.t2s_input.setText('')
             self.ui.t2s_input.setDisabled(False)
             self.ui.t2s_pronunce.setDisabled(True)
+            self.ui.savePron.setDisabled(True)
 
     def clickPhoneme(self):
         phoneme = self.sender().text()
@@ -164,6 +169,13 @@ class IPALabUI(QMainWindow):
         else:
             self.ui.t2s_input.setText(self.ui.t2s_input.text() + phoneme)
 
+    def savePronunciation(self):
+        fileName, _ = QFileDialog.getSaveFileName(self,"Save pronunciation file...")
+        sequence = self.player.decode(self.ui.t2s_input.text())
+        if fileName.find(".wav") == -1:
+            fileName += ".wav"
+        self.player.wav_combine(sequence, fileName)
+          
     def pronunceAll(self):
         sequence = self.player.decode(self.ui.t2s_input.text())
         self.player.wav_combine(sequence)
@@ -175,7 +187,6 @@ class IPALabUI(QMainWindow):
         for phon in listOfPhonemes:
             if phon not in self.user.getFavoritePhoneme():
                 self.user.addFavoritePhoneme(phon)
-        print (self.user.getFavoritePhoneme())
         self.ui.t2s_input.setText('')        
         
 def main():

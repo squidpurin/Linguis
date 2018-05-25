@@ -1,5 +1,5 @@
 from PasswordVerifier import *
-from IPALab_UI import *
+import IPALab_UI as ipalab
 import quizList
 
 class User(PasswordVerifier):
@@ -15,10 +15,10 @@ class User(PasswordVerifier):
         self.quizResult = {}
         self.mainUI = None
         self.pageUI = None
-        self.ipaLabUI = IPALabUI(self)
+        self.ipaLabUI = ipalab.IPALabUI(self)
         self.favUI = None
         self.quizUI = quizList.QuizList(self)
-        self.helpUI = None
+        self.optionUI = None
 
         #self.userData = ...................load userdata
     def getFirstName(self):
