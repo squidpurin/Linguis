@@ -165,7 +165,6 @@ class Text2Speech:
         sequence = AudioSegment.from_wav("./shortened_sound/null.wav")
         for phoneme in seq:
             sequence += AudioSegment.from_wav("./shortened_sound/" + phoneme)
-        print(209380)
         if fn == None:
             sequence.export("sequence.wav", format="wav")
             self.play_audio("sequence.wav")

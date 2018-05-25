@@ -1,5 +1,6 @@
 import sys
 from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from T2SIC import Ui_ot as Uii
 from text_2_speechFIN import *
@@ -175,6 +176,12 @@ class IPALabUI(QMainWindow):
         if fileName.find(".wav") == -1:
             fileName += ".wav"
         self.player.wav_combine(sequence, fileName)
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText("Pronunciation saved.")
+        msg.setWindowTitle("Saved")
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.exec_()        
           
     def pronunceAll(self):
         sequence = self.player.decode(self.ui.t2s_input.text())

@@ -40,7 +40,6 @@ class RegistrationUI(QWidget):
         self.horizontalGroupBox.setLayout(layout)
         windowLayout = QVBoxLayout()
 
-
         image = QPixmap("SEP_Images/logo/Linguis_Logo_F_T.png")
         pic = QLabel()
 
@@ -100,7 +99,6 @@ class RegistrationWidget(QWidget):
         Label3.setStyleSheet('color: black')
         Label3.setAlignment(Qt.AlignLeft)
         flo.addRow(Label3, self.email)
-
 
         #Username
         Label4 = QLabel("{:<31}".format('Username'))
@@ -166,8 +164,6 @@ class RegistrationWidget(QWidget):
         invalid_box.setInformativeText("Password must contain at least 1 capital letter, and 1 number")
         invalid_box.setStandardButtons(QMessageBox.Ok)
         invalid_box.exec_()
-
-
 
 class LoginWidget(QWidget):
     def __init__(self, parent=None):
