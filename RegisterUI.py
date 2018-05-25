@@ -75,7 +75,7 @@ class RegistrationWidget(QWidget):
         flo = QFormLayout()
         Registrationtitle = QLabel("Registration")
         splitter2 = QLabel("-" * 60)
-        Registrationtitle.setFont(QFont("Times", 30, QFont.Bold))
+        Registrationtitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         Registrationtitle.setStyleSheet('color: black')
         splitter2.setStyleSheet('color: black')
 
@@ -179,7 +179,7 @@ class LoginWidget(QWidget):
 
         Logintitle = QLabel("Login")
         splitter1 = QLabel("-" * 60)
-        Logintitle.setFont(QFont("Times", 30, QFont.Bold))
+        Logintitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         flo.addRow(Logintitle)
         flo.addRow(splitter1)
 
