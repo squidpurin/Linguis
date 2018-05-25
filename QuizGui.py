@@ -20,6 +20,7 @@ class QuizApplication(QWidget):
         self.stack = []
         self.user = user
         self.quiz = quiz_
+        self.parent = parent
 
         self.useranswer = userAnswer.UserAnswerList(1)
         self.quizEvaluator = evaluator.QuizEvaluator(self.useranswer, self.quiz)
@@ -47,10 +48,18 @@ class QuizApplication(QWidget):
         hbox.addWidget(self.leftlist)
         hbox.addWidget(self.Stack)
 
-        #Create SubmitButton
+        #Create Submit Button
         confirmbtn = QPushButton('Submit')
         confirmbtn.clicked.connect(self.submitAnswer)
-        hbox.addWidget(confirmbtn)
+
+        #Create Exit Button
+        exitbtn = QPushButton('Quit quiz')
+        exitbtn.clicked.connect(self.exitQuiz)
+
+        vbox = QVBoxLayout(self)
+        hbox.addLayout(vbox)
+        vbox.addWidget(confirmbtn)
+        vbox.addWidget(exitbtn)
 
         #Create the layout
         self.setLayout(hbox)
@@ -59,7 +68,7 @@ class QuizApplication(QWidget):
         self.setWindowTitle('Quiz Demo')
 
         self.show()
-    
+
     #Display the question with respect to the question number
     def display(self, i):
         self.Stack.setCurrentIndex(i)
@@ -202,6 +211,10 @@ class QuizApplication(QWidget):
             tmp = MultipleChoice(question)
             layout.addRow(tmp)
         return layout
+
+    def exitQuiz(self):
+        self.hide()
+        self.parent.show()
 
 def main():
     app = QApplication(sys.argv)

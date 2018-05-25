@@ -35,7 +35,6 @@ class QuizList(QMainWindow):
             if q.id == quiz_text:
                 quiz_ = q
         self.subQuiz = qgui.QuizApplication(quiz_, self.user, self)
-        #self.subQuiz.closed.connect(self.show)
         self.subQuiz.show()
         
 
