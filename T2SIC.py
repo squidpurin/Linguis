@@ -639,7 +639,7 @@ class Ui_ot(object):
         self.ac.setText(_translate("ot", "!"))
         self.dc.setText(_translate("ot", "ǀ"))
         self.bc.setText(_translate("ot", "ʘ"))
-        self.alc.setText(_translate("ot", "||"))
+        self.alc.setText(_translate("ot", "ǁ"))
         self.pac.setText(_translate("ot", "ǂ"))
         self.gqi.setText(_translate("ot", "ʛ"))
         self.gi.setText(_translate("ot", "ɠ"))

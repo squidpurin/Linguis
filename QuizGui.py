@@ -9,13 +9,15 @@ import UserAnswer as userAnswer
 import QAPair as qapair
 import QuizEvaluator as evaluator
 import pickle
+from user import *
 
 class QuizApplication(QWidget):
-    def __init__(self, quiz_):
+    def __init__(self, quiz_, user):
         super(QuizApplication, self).__init__()
         self.leftlist = QListWidget()
-
+            
         self.stack = []
+        self.user = user
         self.quiz = quiz_
 
         self.useranswer = userAnswer.UserAnswerList(1)
@@ -103,7 +105,14 @@ class QuizApplication(QWidget):
             elem += 1
         result = self.quizEvaluator.getFinalScore()
         self.quizEvaluator.setFinalScore(result)
-
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setText("Final result for quiz " + self.quiz.id + " : " + str(result))
+        msg.setWindowTitle("Result")
+        msg.setStandardButtons(QMessageBox.Ok)
+        self.user.quizResult[self.quiz.id] = result
+        retval = msg.exec_()
+       
     #Check if all question is completed
     def isAllQuestionCompleted(self):
         for elem in range(len(self.stack)):
@@ -194,19 +203,20 @@ class QuizApplication(QWidget):
         return layout
 
 def parseToQuizzes(fn):
-    f = open(fn, "r")
+    f = open(fn, "r", encoding='utf-8-sig')
     quizzes = []
     for line in f:
         line = line.strip()
         if line == '#':
             pass
             quizzes.append(quiz_)
-        elif len(line) < 10:
+        elif line.find('%') == -1:
             quiz_ = quiz.Quiz(line)
         else:
             e = line.split('%')
             qname = e[0]
             question_ = e[2]
+            print(e[3])
             if e[3] != 'none':
                 if e[1] == 'MultipleChoice':
                     options = e[4].split(',')
@@ -224,15 +234,17 @@ def parseToQuizzes(fn):
                     answer = e[4]
                     s = question.Question(qname, e[1], question_, answer)
             quiz_.addQuestion(s)
+    f.close()
     return quizzes
 
 def main():
     app = QApplication(sys.argv)
+    #Parse quizzes
     quizzes = parseToQuizzes("quizzes.txt")
-    for e in quizzes:
-        if e.id == "quiz2":
-            quiz_ = e
-    ex = QuizApplication(quiz_)
+    for q in quizzes:
+        if q.id == "Quiz2-IPA":
+            quiz_ = q
+    ex = QuizApplication(quiz_, User("A","B","C","19419","12Ab=IUU"))
     sys.exit(app.exec_())
 
 if __name__ == '__main__':

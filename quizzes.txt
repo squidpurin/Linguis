@@ -1,10 +1,10 @@
-quiz1
-q1%MultipleChoice%What is a?%clea.png%A.anjing,B.anjinx,C.anying,D.huanying,E.xianying%C
-q2%TrueFalse%What is b?%clea.png%true
-q3%Fill%What is c?%none%Anjinks
+﻿Quiz1-Phonology
+q1%MultipleChoice%Name the place of articulation.%artipl.png%A.Alveolar,B.Glottal,C.Bilabial,D.Retroflex,E.Velar%C
+q2%TrueFalse%Is it true that an approximant is commonly referred as semi-vowels?%none%true
+q3%Fill%Fill in the name of manner of articulation which involves the pharynx.%none%pharyngeal
 #
-quiz2
-q1%MultipleChoice%What is a?%clea.png%A.anjing,B.anjinx,C.anying,D.huanying,E.xianying%C
-q2%TrueFalse%What is b?%clea.png%true
-q3%Fill%What is c?%none%Anjinks
+Quiz2-IPA
+q1%MultipleChoice%Which IPA resembles the diagram (plosive, voiceless)?%artipl.png%A.p,B.b,C.v,D.w,E.f%A
+q2%TrueFalse%The symbol [c] represents voiced palatal plosive.%none%false
+q3%Fill%What is the IPA symbol which fits the gap?%ipab.png%a
 #
