@@ -18,6 +18,7 @@ class User(PasswordVerifier):
         self.ipaLabUI = IPALabUI(self)
         self.favUI = None
         self.quizUI = None
+        self.helpUI = None
 
         #self.userData = ...................load userdata
     def getFirstName(self):
