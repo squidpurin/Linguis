@@ -3,6 +3,8 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
+import ipa_chart_soundsFIN as ipa
+
 class FavouriteUI(QWidget):
     def __init__(self):
         super(FavouriteUI, self).__init__()
@@ -12,11 +14,11 @@ class FavouriteUI(QWidget):
         self.phonemestack = []
         self.contentstack = []
 
-        #for favphoneme in phonemelist:
-        #   pass
+        for favphoneme in range(10):
+            self.addPhonemeFavouriteTab(favphoneme, "phoneme" + str(favphoneme))
 
-        #for favcontent in contentlist:
-        #    pass
+        for favcontent in range(10):
+            self.addContentFavouriteTab(favcontent, "content" + str(favcontent))
 
         self.PhonemeStack = QStackedWidget(self)
         self.ContentStack = QStackedWidget(self)
@@ -39,15 +41,14 @@ class FavouriteUI(QWidget):
 
         self.phonemelist.setFixedSize(300, 400)
         self.contentlist.setFixedSize(300, 400)
+
         hbox = QHBoxLayout()
         left = QFormLayout()
         right = QFormLayout()
 
         phonemetitle = QLabel("Favourite Phoneme")
-        splitter1 = QLabel("-" * 60)
         phonemetitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         left.addRow(phonemetitle)
-        left.addRow(splitter1)
 
         pronounceButton =QPushButton("Pronounce")
         pronounceButton.clicked.connect(self.pronouncefavouritephoneme)
@@ -56,13 +57,9 @@ class FavouriteUI(QWidget):
         deletePhonemeButton.clicked.connect(self.deletefavouritephoneme)
         deletePhonemeButton.setFixedWidth(100)
 
-
-
         contenttitle = QLabel("Favourite Content")
-        splitter2 = QLabel("-" * 60)
         contenttitle.setFont(QFont("DIN Alternate", 30, QFont.Bold))
         right.addRow(contenttitle)
-        right.addRow(splitter2)
 
         readButton = QPushButton("Read")
         readButton.clicked.connect(self.readfavouritecontent)
@@ -96,16 +93,26 @@ class FavouriteUI(QWidget):
         self.contentlist.insertItem(item_num, name)
 
     def pronouncefavouritephoneme(self):
-        pass
+        audioplayer = ipa.AudioPlayer()
+        ipa.AudioPlayer("H")
 
+    #Show selected Content
     def readfavouritecontent(self):
         pass
 
+
     def deletefavouritephoneme(self):
-        pass
+        listItems = self.phonemelist.selectedItems()
+        if not listItems:
+            return
+        for item in listItems:
+            self.phonemelist.takeItem(self.phonemelist.row(item))
 
     def deletefavouritecontent(self):
-        pass
+        listItems = self.contentlist.selectedItems()
+        if not listItems: return
+        for item in listItems:
+            self.contentlist.takeItem(self.contentlist.row(item))
 
     def display(self, i):
         self.PhonemeStack.setCurrentIndex(i)
