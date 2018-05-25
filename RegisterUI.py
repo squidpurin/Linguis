@@ -12,9 +12,9 @@ class RegistrationUI(QWidget):
     def __init__(self):
         super(RegistrationUI, self).__init__()
 
-        p = self.palette()
-        p.setColor(self.backgroundRole(), QColor("#A9E3FF"))
-        self.setPalette(p)
+        # p = self.palette()
+        # p.setColor(self.backgroundRole(), QColor("#A9E3FF"))
+        # self.setPalette(p)
 
         self.setWindowTitle("Login and Registration")
         self.setFixedSize(900,600)
@@ -80,8 +80,8 @@ class RegistrationWidget(QWidget):
         Registrationtitle = QLabel("Registration")
         splitter2 = QLabel("-" * 60)
         Registrationtitle.setFont(QFont("Times", 30, QFont.Bold))
-        Registrationtitle.setStyleSheet('color: white')
-        splitter2.setStyleSheet('color: white')
+        Registrationtitle.setStyleSheet('color: black')
+        splitter2.setStyleSheet('color: black')
 
         flo.addRow(Registrationtitle)
         flo.addRow(splitter2)
@@ -89,21 +89,21 @@ class RegistrationWidget(QWidget):
         #Firstname
         Label1 = QLabel("{:<33}".format('First name'))
         Label1.setFont(QFont("Helvetica", 15))
-        Label1.setStyleSheet('color: white')
+        Label1.setStyleSheet('color: black')
         Label1.setAlignment(Qt.AlignLeft)
         flo.addRow(Label1, self.firstname)
 
         #Lastname
         Label2 = QLabel("{:<32}".format('Last name'))
         Label2.setFont(QFont("Helvetica", 15))
-        Label2.setStyleSheet('color: white')
+        Label2.setStyleSheet('color: black')
         Label2.setAlignment(Qt.AlignLeft)
         flo.addRow(Label2, self.lastname)
 
         #Email
         Label3 = QLabel("{:<36}".format('Email'))
         Label3.setFont(QFont("Helvetica", 15))
-        Label3.setStyleSheet('color: white')
+        Label3.setStyleSheet('color: black')
         Label3.setAlignment(Qt.AlignLeft)
         flo.addRow(Label3, self.email)
 
@@ -111,21 +111,21 @@ class RegistrationWidget(QWidget):
         #Username
         Label4 = QLabel("{:<31}".format('Username'))
         Label4.setFont(QFont("Helvetica", 15))
-        Label4.setStyleSheet('color: white')
+        Label4.setStyleSheet('color: black')
         Label4.setAlignment(Qt.AlignLeft)
         flo.addRow(Label4, self.username)
 
         #Password
         Label5 = QLabel("{:<32}".format('Password'))
         Label5.setFont(QFont("Helvetica", 15))
-        Label5.setStyleSheet('color: white')
+        Label5.setStyleSheet('color: black')
         Label5.setAlignment(Qt.AlignLeft)
         flo.addRow(Label5, self.password)
 
         #Password Confirmation
         Label6 = QLabel("{:<23}".format('Password Confirmation'))
         Label6.setFont(QFont("Helvetica", 15))
-        Label6.setStyleSheet('color: white')
+        Label6.setStyleSheet('color: black')
         Label6.setAlignment(Qt.AlignLeft)
         flo.addRow(Label6, self.confirmedpassword)
 

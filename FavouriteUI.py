@@ -92,13 +92,13 @@ class FavouriteUI(QWidget):
     def readfavouritecontent(self):
         pass
 
-    def deltefavouritephoneme(self):
+    def deletefavouritephoneme(self):
         pass
 
     def deletefavouritecontent(self):
         pass
 
-    def (self, i):
+    def display(self, i):
         self.PhonemeStack.setCurrentIndex(i)
         self.ContentStack.setCurrentIndex(i)
 def main():
