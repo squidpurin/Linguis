@@ -4,6 +4,10 @@ from PyQt5.QtWidgets import *
 from mainApp_UI import Ui_MainWindow as Uim
 from user import *
 import Quiz
+import IPALab_UI as ipalab
+import ContentGUI as pgui
+import quizList as qlst
+import FavouriteUI as fvui
 
 class MainMenu(QMainWindow):
     def __init__(self, user):
@@ -23,12 +27,16 @@ class MainMenu(QMainWindow):
     def openMenu(self):
         sender = self.sender().text()
         if sender == "IPA":
+            self.user.ipaLabUI = ipalab.IPALabUI(self.user)
             self.user.ipaLabUI.show()
         elif sender == "Material":
+            self.user.pageUI = pgui.ContentGUI(self.user)
             self.user.pageUI.show()
         elif sender == "Quiz":
+            self.user.quizUI = qlst.QuizList(self.user)
             self.user.quizUI.show()
         elif sender == "Favourite":
+            self.user.favUI = fvui.FavoriteUI(self.user)
             self.user.favUI.show()
         elif sender == "Option":
             self.user.optionUI.show()
