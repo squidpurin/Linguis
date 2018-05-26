@@ -121,7 +121,18 @@ class QuizApplication(QWidget):
         msg.setText("Final result for quiz " + self.quiz.id + " : " + str(result))
         msg.setWindowTitle("Result")
         msg.setStandardButtons(QMessageBox.Ok)
-        self.user.quizResult[self.quiz.id] = result
+        overwrite = False
+        if self.user.quizResult == {}:
+            self.user.quizResult = []
+            print(self.user.quizResult)
+        elif len(self.user.quizResult) > 0:
+            for qres in self.user.quizResult:
+                if qres[0] == self.quiz.id:
+                    qres[1] = result
+                    overwrite = True
+        if overwrite == False:
+            self.user.quizResult.append([self.quiz.id, result])
+        print(self.user.quizResult)
         retval = msg.exec_()
        
     #Check if all question is completed

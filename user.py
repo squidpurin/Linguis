@@ -11,7 +11,7 @@ class User(PasswordVerifier):
         self.password = password
         self.favorites_phoneme = []
         self.favorites_content = []
-        self.quizResult = {}
+        self.quizResult = []
         self.mainUI = None
         self.pageUI = None
         self.quizUI = None
@@ -77,8 +77,8 @@ class User(PasswordVerifier):
 
     def getQuizResults(self):
         res = ''
-        for key in self.quizResult:
-            res += key + ": " + str(self.quizResult[key]) + "; "
+        for ql in self.quizResult:
+            res += ql[0] + ": " + str(ql[1]) + "; "
         return res
 
     def __str__(self):

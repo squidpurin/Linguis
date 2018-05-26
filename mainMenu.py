@@ -9,6 +9,7 @@ import ContentGUI as pgui
 import quizList as qlst
 import FavouriteUI as fvui
 import optionMenu as opui
+import pickle
 
 class MainMenu(QMainWindow):
     def __init__(self, user_):
@@ -22,6 +23,7 @@ class MainMenu(QMainWindow):
         self.ui.btn_Favourite.clicked.connect(self.openMenu)
         self.ui.btn_Options.clicked.connect(self.openMenu)
         self.ui.btn_Quit.clicked.connect(self.openMenu)
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowCloseButtonHint)
         self.show()
 
     def openMenu(self):
@@ -42,6 +44,24 @@ class MainMenu(QMainWindow):
             self.user.optionUI = opui.OptionMenuUI(self.user)
             self.user.optionUI.show()
         elif sender == "Quit":
+            userList = pickle.load(open("userlist.p", "rb"))
+            self.user.mainUI = None
+            self.user.pageUI = None
+            self.user.quizUI = None
+            self.user.ipaLabUI = None
+            self.user.favUI = None
+            self.user.optionUI = None
+            print(userList)
+            for _user in userList:
+                if self.user.username == _user.username:
+                    userList.remove(_user)
+                    userList.append(self.user)
+            try:
+                pickle.dump(userList, open("userlist.p", "wb"))
+            except Exception as ex:
+                template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                message = template.format(type(ex).__name__, ex.args)
+                print (message)        
             self.hide()
 
 def main():
