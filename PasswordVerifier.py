@@ -4,7 +4,6 @@ class PasswordVerifier(object):
         upper_case = 0
         lower_case = 0
         number = 0
-
         for i in userp:
             if i.isupper():
                 upper_case += 1

@@ -146,7 +146,6 @@ class RegistrationWidget(QWidget):
             else:
                 self.NotifyUnmatchedPassword()
                 print("Cannot the password is not the same")
-
         else:
             self.NotifyImproperRegistration()
 
