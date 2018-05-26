@@ -35,13 +35,6 @@ class FavouriteUI(QWidget):
         #for i in range(len(self.leftlist)):
         #    self.Stack.addWidget(self.contentstack[i])
 
-        windowLayout = QVBoxLayout()
-
-        button = QPushButton("Back")
-        button.setFixedSize(100,60)
-
-        windowLayout.addWidget(button)
-
 
         self.phonemelist.setFixedSize(300, 400)
         self.contentlist.setFixedSize(300, 400)
@@ -81,9 +74,8 @@ class FavouriteUI(QWidget):
 
         hbox.addLayout(left)
         hbox.addLayout(right)
-        windowLayout.addLayout(hbox)
 
-        self.setLayout(windowLayout)
+        self.setLayout(hbox)
         self.phonemelist.currentRowChanged.connect(self.display)
         self.contentlist.currentRowChanged.connect(self.display)
         self.setFixedSize(900, 600)
