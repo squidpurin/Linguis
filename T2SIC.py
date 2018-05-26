@@ -555,7 +555,7 @@ class Ui_ot(object):
 
     def retranslateUi(self, ot):
         _translate = QtCore.QCoreApplication.translate
-        ot.setWindowTitle(_translate("ot", "MainWindow"))
+        ot.setWindowTitle(_translate("ot", "IPA Laboratory"))
         self.label.setText(_translate("ot", "Bilabial"))
         self.label_2.setText(_translate("ot", "Labio-"))
         self.label_4.setText(_translate("ot", "Dental"))

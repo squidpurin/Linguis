@@ -43,7 +43,6 @@ class ContentGUI(QWidget):
         verticalLayout.addWidget(self.Stack)
         verticalLayout.addWidget(favouriteButton)
 
-
         self.contentlist.currentRowChanged.connect(self.display)
         layout.addLayout(verticalLayout)
 
@@ -77,7 +76,7 @@ class ContentGUI(QWidget):
     
     def addToFavouriteList(self):
         pass
-
+    
     #Display the question with respect to the question number
     def display(self, i):
         self.Stack.setCurrentIndex(i)

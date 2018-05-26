@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Linguis"))
         self.btn_IPA.setText(_translate("MainWindow", "IPA"))
         self.btn_Material.setText(_translate("MainWindow", "Material"))
         self.btn_Quiz.setText(_translate("MainWindow", "Quiz"))

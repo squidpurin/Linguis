@@ -25,10 +25,6 @@ class Ui_MainWindow(object):
         self.proceedButton.setGeometry(QtCore.QRect(750, 500, 112, 34))
         self.proceedButton.setObjectName("proceedButton")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 31))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -38,7 +34,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Quizzes"))
         self.quizLabel.setText(_translate("MainWindow", "Quizzes"))
         self.proceedButton.setText(_translate("MainWindow", "Proceed"))
 

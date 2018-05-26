@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'pageViewerUI.ui'
+# Form implementation generated from reading ui file 'pageViewerUI_.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -29,10 +29,6 @@ class Ui_MainWindow(object):
         self.tempArea.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.tempArea.setObjectName("tempArea")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 31))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -42,7 +38,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Content"))
         self.materialLabel.setText(_translate("MainWindow", "Quizzes"))
         self.favButton.setText(_translate("MainWindow", "Add to Favourite"))
         self.tempArea.setText(_translate("MainWindow", "TextLabel"))
