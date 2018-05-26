@@ -7,14 +7,12 @@ import user
 import login
 import register
 
-
 class RegistrationUI(QWidget):
     def __init__(self):
         super(RegistrationUI, self).__init__()
 
         self.setWindowTitle("Login and Registration")
         self.setFixedSize(900,600)
-
         self.horizontalGroupBox = QGroupBox()
 
         layout = QHBoxLayout()
@@ -240,13 +238,13 @@ class LoginWidget(QWidget):
 
     #Login Appplication
     def LoginApp(self):
-        userlogin  = login.Login(self.username, self.password)
-        print(userlogin.match())
-        if(userlogin.match()):
+        self.userlogin  = login.Login(self.username, self.password)
+        print(self.userlogin.match())
+        if(self.userlogin.match() != False):
             #Switch to other pages
             #test showing the messagebox
             self.NotifyValidUserPassword()
-            pass
+            self.userlogin.openApp()
         else:
             #In case that the password is invalid
             self.NotifyInvalidUserPassword()
@@ -268,7 +266,6 @@ class LoginWidget(QWidget):
         invalid_box.setInformativeText("Valid naja")
         invalid_box.setStandardButtons(QMessageBox.Ok)
         invalid_box.exec_()
-
 
 def main():
     app = QApplication(sys.argv)

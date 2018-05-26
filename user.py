@@ -20,7 +20,7 @@ class User(PasswordVerifier):
         self.pageUI = None
         self.quizUI = None #quizList.QuizList(self)
         try:
-            self.ipaLabUI = ipalab.IPALabUI(self)
+            self.ipaLabUI = None #ipalab.IPALabUI(self)
         except:
             print("no pyaudio 2")
         self.favUI = None
@@ -80,4 +80,7 @@ class User(PasswordVerifier):
         return self.favorites_phoneme
 
     def getFavoriteContent(self):
-        return self.favorites_content   
+        return self.favorites_content
+
+    def __str__(self):
+        return self.firstname + self.lastname + self.email + self.username + self.password

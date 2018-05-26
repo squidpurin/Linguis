@@ -12,17 +12,17 @@ class Login(PasswordVerifier):
         #import uList
         self.uList = pickle.load(open("userlist.p","rb"))
         self.mainApp = None
-        self.openApp()
 
     def match(self):
         for p in self.uList:
+            print(p.getUserName(), self.username.text())
             if (p.getUserName() == self.username.text()) and (p.getPassword() == self.password.text()):
                 self.user = p
-                return True
+                return self.user
         return False
 
     def openApp(self):
-        if self.match():
+        if self.match() != False:
             self.mainApp = ma.MainMenu(self.user)
         else:
             pass #loop back

@@ -9,6 +9,7 @@ class MainMenu(QMainWindow):
     def __init__(self, user):
         QMainWindow.__init__(self, None)
         self.user = user
+        print(self.user)
         self.ui = Uim()
         self.ui.setupUi(self)
         self.ui.btn_IPA.clicked.connect(self.openMenu)
@@ -17,6 +18,7 @@ class MainMenu(QMainWindow):
         self.ui.btn_Favourite.clicked.connect(self.openMenu)
         self.ui.btn_Options.clicked.connect(self.openMenu)
         self.ui.btn_Quit.clicked.connect(self.openMenu)
+        self.show()
 
     def openMenu(self):
         sender = self.sender().text()

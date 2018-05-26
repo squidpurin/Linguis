@@ -18,9 +18,9 @@ class Register(PasswordVerifier):
             print(type(self.user))
             if(type(self.user) == User):
                 ulist = pickle.load(open("userlist.p","rb"))
-                new_user = self.user
-                ulist.append(new_user)
-                pickle.dump(ulist, open("userlist.p","wb"))
+                ulist.append(self.user)
+                pickle.dump(ulist, open("userlist.p", "wb"))
+                print(2442)
                 s = Reporter(self.user)
                 s.report("Registered")
                 s = Notifier(self.user)
@@ -34,7 +34,9 @@ class Register(PasswordVerifier):
         for p in uList:
            if p.username == self.user.username:
                return True
+        pickle.dump(uList, open("userlist.p","wb"))
         return False
 
-h = Register()
-h.createUser(User("babi", "khinzir", "c.dswibowo@yahoo.com.tw", "1337", "abcd0AVC"))
+def main():
+    h = Register()
+    h.createUser(User("babi", "khinzir", "c.dswibowo@yahoo.com.tw", "1337", "abcd0AVC"))

@@ -9,13 +9,16 @@ class Reporter:
         self.server.ehlo()
         self.server.login('linguissep@yahoo.com','5859lsep')
     def report(self, msg):
-        email = self.user.email
-        name = self.user.firstname + ' ' + self.user.lastname
-        msg = "\n"+email+'\n'+name+'\n'+msg
-        print(msg)
-        self.server.sendmail("linguissep@yahoo.com","linguissep@yahoo.com",msg)
-        print("mg sent")
-        self.server.quit()
+        try:
+            email = self.user.email
+            name = self.user.firstname + ' ' + self.user.lastname
+            msg = "\n"+email+'\n'+name+'\n'+msg
+            print(msg)
+            self.server.sendmail("linguissep@yahoo.com","linguissep@yahoo.com",msg)
+            print("mg sent")
+            self.server.quit()
+        except:
+            print("Email not sent")
 
 class Notifier:
     def __init__(self, user):
@@ -26,10 +29,13 @@ class Notifier:
         self.server.ehlo()
         self.server.login('linguissep@yahoo.com','5859lsep')
     def notify(self, msg):
-        email = self.user.email
-        name = self.user.firstname + ' ' + self.user.lastname
-        msg = "\n"+email+'\n'+name+'\n'+msg
-        print(msg)
-        self.server.sendmail("linguissep@yahoo.com",email,msg)
-        print("mg sent")
-        self.server.quit()
+        try:
+            email = self.user.email
+            name = self.user.firstname + ' ' + self.user.lastname
+            msg = "\n"+email+'\n'+name+'\n'+msg
+            print(msg)
+            self.server.sendmail("linguissep@yahoo.com",email,msg)
+            print("mg sent")
+            self.server.quit()
+        except:
+            print("Email not sent")

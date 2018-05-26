@@ -12,11 +12,12 @@ from user import *
 
 
 class ContentGUI(QWidget):
-    def __init__(self):
+    def __init__(self, user):
         super(ContentGUI,self).__init__()
         self.content = c.ContentCollection()
         self.content.init_pages()
-
+        self.user = user
+        
         layout = QHBoxLayout()
         self.contentlist = QListWidget()
 
@@ -25,7 +26,6 @@ class ContentGUI(QWidget):
             self.addContentTab(i, self.content.content_collection[i].getPageTitle())
             self.addNewWebpage() #QWidget
             self.stack[i].setLayout(self.createWebView(self.content.content_collection[i].getHTMLFilename()))
-
 
         self.Stack = QStackedWidget(self)
         for i in range(len(self.contentlist)):
@@ -73,8 +73,8 @@ class ContentGUI(QWidget):
         webView.urlChanged.connect(self.checkURL)
 
         layout.addRow(webView)
-
         return layout
+    
     def addToFavouriteList(self):
         pass
 
@@ -92,8 +92,7 @@ class ContentGUI(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    w = ContentGUI()
-    w.show()
+    w = ContentGUI(User("A","B","C","1393","pP1-2222"))
     app.exec_()
 
 if __name__ == '__main__':
