@@ -10,9 +10,9 @@ import quizList as qlst
 import FavouriteUI as fvui
 
 class MainMenu(QMainWindow):
-    def __init__(self, user):
+    def __init__(self, user_):
         QMainWindow.__init__(self, None)
-        self.user = user
+        self.user = user_
         print(self.user)
         self.ui = Uim()
         self.ui.setupUi(self)
@@ -36,12 +36,12 @@ class MainMenu(QMainWindow):
             self.user.quizUI = qlst.QuizList(self.user)
             self.user.quizUI.show()
         elif sender == "Favourite":
-            self.user.favUI = fvui.FavoriteUI(self.user)
+            self.user.favUI = fvui.FavouriteUI(self.user)
             self.user.favUI.show()
         elif sender == "Option":
             self.user.optionUI.show()
         elif sender == "Quit":
-            sys.exit()
+            self.hide()
 
 def main():
     app = QApplication(sys.argv)

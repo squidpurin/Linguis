@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 import user
 import login
 import register
+import pickle
 
 class RegistrationUI(QWidget):
     def __init__(self):
@@ -212,6 +213,14 @@ class LoginWidget(QWidget):
         self.password.setAlignment(Qt.AlignLeft)
         self.password.setEchoMode(QLineEdit.Password)
 
+        try: 
+            [un, pw] = pickle.load(open("rememberme.p", "rb")) 
+            self.username.setText(un) 
+            self.password.setText(pw) 
+            pickle.dump([un, pw], open("rememberme.p", "wb")) 
+        except: 
+            print("No remember data")
+                  
         flo.addRow(Label2)
         flo.addRow(self.password)
         self.b1 = QCheckBox("Remember me")
@@ -243,6 +252,11 @@ class LoginWidget(QWidget):
             #Switch to other pages
             #test showing the messagebox
             self.NotifyValidUserPassword()
+            if self.b1.isChecked() == True: 
+                try: 
+                    pickle.dump([self.username.text(), self.password.text()], open("rememberme.p", "wb")) 
+                except: 
+                    print("Could not do remember me") 
             self.userlogin.openApp()
         else:
             #In case that the password is invalid
