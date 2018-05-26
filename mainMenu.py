@@ -13,7 +13,6 @@ class MainMenu(QMainWindow):
     def __init__(self, user_):
         QMainWindow.__init__(self, None)
         self.user = user_
-        print(self.user)
         self.ui = Uim()
         self.ui.setupUi(self)
         self.ui.btn_IPA.clicked.connect(self.openMenu)

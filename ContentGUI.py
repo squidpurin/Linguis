@@ -12,11 +12,11 @@ from user import *
 
 
 class ContentGUI(QWidget):
-    def __init__(self, user):
+    def __init__(self, user_):
         super(ContentGUI,self).__init__()
         self.content = c.ContentCollection()
         self.content.init_pages()
-        self.user = user
+        self.user = user_
         
         layout = QHBoxLayout()
         self.contentlist = QListWidget()

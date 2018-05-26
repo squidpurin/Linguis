@@ -75,5 +75,11 @@ class User(PasswordVerifier):
     def getFavoriteContent(self):
         return self.favorites_content
 
+    def getQuizResults(self):
+        res = ''
+        for v, k in self.quizResult:
+            res += v + ": " + k + "; "
+        return res
+
     def __str__(self):
         return self.firstname + self.lastname + self.email + self.username + self.password

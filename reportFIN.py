@@ -1,8 +1,8 @@
 import smtplib
 
 class Reporter:
-    def __init__(self, user):
-        self.user = user
+    def __init__(self, user_):
+        self.user = user_
         self.server = smtplib.SMTP('smtp.mail.yahoo.com',587)
         self.server.ehlo()
         self.server.starttls()
@@ -21,8 +21,8 @@ class Reporter:
             print("Email not sent")
 
 class Notifier:
-    def __init__(self, user):
-        self.user = user
+    def __init__(self, user_):
+        self.user = user_
         self.server = smtplib.SMTP('smtp.mail.yahoo.com',587)
         self.server.ehlo()
         self.server.starttls()
