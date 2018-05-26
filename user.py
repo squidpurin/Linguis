@@ -77,8 +77,8 @@ class User(PasswordVerifier):
 
     def getQuizResults(self):
         res = ''
-        for v, k in self.quizResult:
-            res += v + ": " + k + "; "
+        for key in self.quizResult:
+            res += key + ": " + str(self.quizResult[key]) + "; "
         return res
 
     def __str__(self):

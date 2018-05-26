@@ -40,7 +40,9 @@ class OptionMenuUI(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    ex = OptionMenuUI(user.User("A","A","c.dswibowo@yahoo.com.tw","BB","11PPp-pp"))
+    user_k = user.User("A","A","c.dswibowo@yahoo.com.tw","BB","11PPp-pp")
+    user_k.quizResult['Chhr'] = 4
+    ex = OptionMenuUI(user_k)
     ex.show()
     sys.exit(app.exec_())
 

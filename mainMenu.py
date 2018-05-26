@@ -8,6 +8,7 @@ import IPALab_UI as ipalab
 import ContentGUI as pgui
 import quizList as qlst
 import FavouriteUI as fvui
+import optionMenu as opui
 
 class MainMenu(QMainWindow):
     def __init__(self, user_):
@@ -37,7 +38,8 @@ class MainMenu(QMainWindow):
         elif sender == "Favourite":
             self.user.favUI = fvui.FavouriteUI(self.user)
             self.user.favUI.show()
-        elif sender == "Option":
+        elif sender == "Options":
+            self.user.optionUI = opui.OptionMenuUI(self.user)
             self.user.optionUI.show()
         elif sender == "Quit":
             self.hide()
