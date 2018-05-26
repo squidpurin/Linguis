@@ -60,7 +60,6 @@ class ContentGUI(QWidget):
     def addNewWebpage(self):
         tmp = QWidget()
         self.stack.append(tmp)
-        #print("New content added successfully")
 
     def createWebView(self, page):
         layout = QFormLayout()
