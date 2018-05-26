@@ -74,7 +74,15 @@ class ContentGUI(QWidget):
         return layout
     
     def addToFavouriteList(self):
-        pass
+        listItems = self.contentlist.selectedItems()
+        if not listItems: return
+        for item in listItems:
+            favcontent = item.text()
+        for content in self.content.content_collection:
+            if(favcontent == content.getPageTitle() and favcontent not in self.user.favorites_content):
+                self.user.favorites_content.append(content)
+        print(self.user.favorites_content)
+
     
     #Display the question with respect to the question number
     def display(self, i):

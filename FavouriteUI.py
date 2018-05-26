@@ -4,6 +4,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from user import *
 
+import ContentGUI as pgui
+
 import ipa_chart_soundsFIN as ipa
 
 class FavouriteUI(QWidget):
@@ -19,8 +21,9 @@ class FavouriteUI(QWidget):
         for num in range(len(user.favorites_phoneme)):
             self.addPhonemeFavouriteTab(num, user.favorites_phoneme[num])
 
-        for favcontent in range(10):
-            self.addContentFavouriteTab(favcontent, "content" + str(favcontent))
+        for favcontent in range(len(user.favorites_content)):
+            self.addContentFavouriteTab(favcontent, user.favorites_content[favcontent].getPageTitle())
+
 
         self.PhonemeStack = QStackedWidget(self)
         self.ContentStack = QStackedWidget(self)
@@ -104,7 +107,17 @@ class FavouriteUI(QWidget):
 
     #Show selected Content
     def readfavouritecontent(self):
-        pass
+        listItems = self.contentlist.selectedItems()
+        if not listItems:
+            return
+        for item in listItems:
+            to_read = item.text()
+        self.hide()
+        for i in range(len(self.user.pageUI.contentlist)):
+            if self.user.pageUI.contentlist.item(i).text() == to_read:
+                self.user.pageUI.contentlist.setCurrentRow(i)
+        self.user.pageUI.show()
+
 
     def deletefavouritephoneme(self):
         listItems = self.phonemelist.selectedItems()
@@ -119,7 +132,12 @@ class FavouriteUI(QWidget):
         listItems = self.contentlist.selectedItems()
         if not listItems: return
         for item in listItems:
-            self.contentlist.takeItem(self.contentlist.row(item))
+            itemToTake = self.contentlist.takeItem(self.contentlist.row(item)).text()
+        for content in self.user.favorites_content:
+            if(itemToTake == content.getPageTitle()):
+                self.user.delFavoriteContent(content)
+        print(self.user.favorites_content)
+
 
     def display(self, i):
         self.PhonemeStack.setCurrentIndex(i)
@@ -128,7 +146,12 @@ class FavouriteUI(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    ex = FavouriteUI(User("A", "B", "C", "1515", "12ABhf--"))
+    user_ = User("A", "B", "C", "1515", "12ABhf--")
+    import page
+    page1 = page.Page("00150","Consonants","00150-Consonants.html")
+    user_.pageUI = pgui.ContentGUI(user_)
+    user_.favorites_content.append(page1)
+    ex = FavouriteUI(user_)
     sys.exit(app.exec_())
 
 if __name__ == '__main__':

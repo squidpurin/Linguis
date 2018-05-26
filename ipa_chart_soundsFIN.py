@@ -1,5 +1,9 @@
-import pyaudio, wave
-from pydub import AudioSegment
+try:
+    import pyaudio, wave
+    from pydub import AudioSegment
+except:
+    print("no pyaudio")
+
 
 class MapperF:
     def __init__(self):
