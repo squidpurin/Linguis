@@ -256,7 +256,12 @@ class LoginWidget(QWidget):
                 try: 
                     pickle.dump([self.username.text(), self.password.text()], open("rememberme.p", "wb")) 
                 except: 
-                    print("Could not do remember me") 
+                    print("Pickle error")
+            else:
+                try: 
+                    pickle.dump([], open("rememberme.p", "wb")) 
+                except: 
+                    print("Pickle error")
             self.userlogin.openApp()
         else:
             #In case that the password is invalid
