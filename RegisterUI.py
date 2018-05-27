@@ -140,8 +140,6 @@ class RegistrationWidget(QWidget):
     #Add user profile into the pickledb system
     def signup(self):
         newuser = user.User(self.firstname.text(), self.lastname.text(),self.email.text(), self.username.text(), self.password.text())
-        print(self.firstname.text())
-        print(self.confirmedpassword.text())
         if(self.firstname.text() != "" or self.lastname.text() != "" or self.email.text() != ""
                 or self.username.text() != "" or self.password.text() != "" or self.confirmedpassword.text() != ""):
             if (newuser.PasswordConfirmation(self.confirmedpassword.text())):
