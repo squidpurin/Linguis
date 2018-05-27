@@ -15,25 +15,11 @@ class FavouriteUI(QWidget):
         self.contentlist = QListWidget()
         self.user = user
 
-        self.phonemestack = []
-        self.contentstack = []
-
         for num in range(len(user.favorites_phoneme)):
             self.addPhonemeFavouriteTab(num, user.favorites_phoneme[num])
 
         for favcontent in range(len(user.favorites_content)):
             self.addContentFavouriteTab(favcontent, user.favorites_content[favcontent].getPageTitle())
-
-
-        self.PhonemeStack = QStackedWidget(self)
-        self.ContentStack = QStackedWidget(self)
-
-        #for i in range(len(self.leftlist)):
-        #    self.PhonemeStack.addWidget(self.phonemestack[i])
-
-        self.ContentStack = QStackedWidget(self)
-        #for i in range(len(self.leftlist)):
-        #    self.Stack.addWidget(self.contentstack[i])
 
 
         self.phonemelist.setFixedSize(300, 400)
@@ -76,8 +62,6 @@ class FavouriteUI(QWidget):
         hbox.addLayout(right)
 
         self.setLayout(hbox)
-        self.phonemelist.currentRowChanged.connect(self.display)
-        self.contentlist.currentRowChanged.connect(self.display)
         self.setFixedSize(900, 600)
         self.setWindowTitle('Favourite')
         self.show()
@@ -129,11 +113,6 @@ class FavouriteUI(QWidget):
             if(itemToTake == content.getPageTitle()):
                 self.user.delFavoriteContent(content)
         print(self.user.favorites_content)
-
-
-    def display(self, i):
-        self.PhonemeStack.setCurrentIndex(i)
-        self.ContentStack.setCurrentIndex(i)
 
 
 def main():
