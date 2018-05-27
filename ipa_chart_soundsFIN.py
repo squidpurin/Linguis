@@ -17,6 +17,7 @@ class MapperF:
                         'ɟ':'vcd_plt_psv_f.wav',
                         'k':'vls_vlr_psv_f.wav',
                         'ɡ':'vcd_vlr_psv_f.wav',
+                        'g':'vcd_vlr_psv_f.wav',
                         'q':'vls_uvl_psv_f.wav',
                         'ɢ':'vcd_uvl_psv_f.wav',
                         'ʔ':'vls_glt_psv_f.wav',

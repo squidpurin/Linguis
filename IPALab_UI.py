@@ -93,8 +93,6 @@ class IPALabUI(QMainWindow):
         self.ui.aeg.clicked.connect(self.clickPhoneme)
         self.ui.xeg.clicked.connect(self.clickPhoneme)
         self.ui.zy.clicked.connect(self.clickPhoneme)
-        self.ui.lll.clicked.connect(self.clickPhoneme)
-        self.ui.kp.clicked.connect(self.clickPhoneme)
         self.ui.sy.clicked.connect(self.clickPhoneme)
         self.ui.i.clicked.connect(self.clickPhoneme)
         self.ui.y.clicked.connect(self.clickPhoneme)

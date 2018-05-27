@@ -15,6 +15,7 @@ class Mapper:
                         'ɟ':'vcd_plt_psv.wav',
                         'k':'vls_vlr_psv.wav',
                         'ɡ':'vcd_vlr_psv.wav',
+                        'g':'vcd_vlr_psv.wav',
                         'q':'vls_uvl_psv.wav',
                         'ɢ':'vcd_uvl_psv.wav',
                         'ʔ':'vls_glt_psv.wav',
@@ -168,7 +169,10 @@ class Text2Speech:
     def wav_combine(self, seq, fn = None):
         sequence = AudioSegment.from_wav("./shortened_sound/null.wav")
         for phoneme in seq:
-            sequence += AudioSegment.from_wav("./shortened_sound/" + phoneme)
+            try:
+                sequence += AudioSegment.from_wav("./shortened_sound/" + phoneme)
+            except:
+                print(phoneme + " not found.")
         if fn == None:
             sequence.export("sequence.wav", format="wav")
             self.play_audio("sequence.wav")
