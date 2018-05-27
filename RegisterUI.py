@@ -288,8 +288,8 @@ class LoginWidget(QWidget):
     def NotifyValidUserPassword(self):
         invalid_box = QMessageBox()
         invalid_box.setIcon(QMessageBox.Information)
-        invalid_box.setText("Login Successfully")
-        invalid_box.setInformativeText("Valid naja")
+        invalid_box.setText("Login Successful.")
+        invalid_box.setInformativeText("Welcome to Linguis!")
         invalid_box.setStandardButtons(QMessageBox.Ok)
         invalid_box.exec_()
 

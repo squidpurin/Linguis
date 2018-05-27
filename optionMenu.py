@@ -16,6 +16,7 @@ class OptionMenuUI(QMainWindow):
 
         version_file = open("version.v", "r")
         ver = version_file.read()
+        version_file.close()
         
         self.ui.firstName.setText(self.user.firstname)
         self.ui.lastName.setText(self.user.lastname)
@@ -23,7 +24,10 @@ class OptionMenuUI(QMainWindow):
         self.ui.userEmail.setText(self.user.email)
         self.ui.versionNum.setText(ver)
         self.ui.quizRes.setText(self.user.getQuizResults())
-
+        help_file = open("./helpfile.txt", "r")
+        self.ui.helpText.setText(help_file.read())
+        help_file.close()
+        
         self.reporter = rep.Reporter(self.user)
         self.ui.sendButton.clicked.connect(self.reportSend)
 
@@ -41,7 +45,7 @@ class OptionMenuUI(QMainWindow):
 def main():
     app = QApplication(sys.argv)
     user_k = user.User("A","A","c.dswibowo@yahoo.com.tw","BB","11PPp-pp")
-    user_k.quizResult['Chhr'] = 4
+    user_k.quizResult.append(["1",5])
     ex = OptionMenuUI(user_k)
     ex.show()
     sys.exit(app.exec_())

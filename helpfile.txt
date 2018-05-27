@@ -1,0 +1,5 @@
+On the main menu screen, click each of the main topic’s buttons to access its features. The IPA button leads to an IPA Chart screen with pronunciation and text-to-speech functionalities. The Material button leads to a content browser screen which allows you to view different topics in phonological linguistics. The Quiz button leads to a screen with quizzes that you can take to test your knowledge in linguistics and phonology.
+
+Whereever it applies, the Favourite button allows you to add contents to your favourites list, which can be accessed from the Favourites button on the menu screen. You can then access those contents quickly from the Favourites screen by selecting the content you want and selecting Read.
+
+The Info screen allows the user to view details about their account, as well as view this help message, and send bug reports to the developer.
