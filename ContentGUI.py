@@ -78,8 +78,11 @@ class ContentGUI(QWidget):
         if not listItems: return
         for item in listItems:
             favcontent = item.text()
+        userTitles = []
+        for page in self.user.favorites_content:
+            userTitles.append(page.getPageTitle())
         for content in self.content.content_collection:
-            if(favcontent == content.getPageTitle() and favcontent not in self.user.favorites_content):
+            if(favcontent == content.getPageTitle() and favcontent not in userTitles):
                 self.user.favorites_content.append(content)
         print(self.user.favorites_content)
 

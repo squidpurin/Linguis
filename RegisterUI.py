@@ -52,6 +52,14 @@ class RegistrationUI(QWidget):
         windowLayout.addWidget(self.horizontalGroupBox)
         self.setLayout(windowLayout)
 
+    def closeEvent( self, event ):
+        reply = QMessageBox.question( self, 'Message', "Are you sure to quit?", QMessageBox.Yes,
+                                      QMessageBox.No )
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
+
 class RegistrationWidget(QWidget):
     def __init__(self, parent = None):
         super(RegistrationWidget, self).__init__(parent)
