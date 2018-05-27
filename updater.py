@@ -7,20 +7,20 @@ class Updater:
         version_file = open("version.v","r")
         self.ver = int(version_file.read())
         version_file.close()
+        self.updater_ver = None
         self.path = path
         self.updateable = False
         
     def validateApp(self):
         try:
-            print(self.path)
-            zip_ref = zipfile.ZipFile(self.path, 'r')
+            zip_ref = zipfile.ZipFile(self.path.strip(), 'r')
             zip_ref.extractall('./update')
             zip_ref.close()
             #check if current version is latest already'
             version_file = open("./update/version.v","r")
-            updater_file_ver = int(version_file.read())
+            self.updater_ver = int(version_file.read())
             version_file.close()
-            if updater_file_ver > self.ver:
+            if self.updater_ver > self.ver:
                 self.updateable = True
                 return 1
             else:

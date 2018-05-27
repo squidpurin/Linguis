@@ -36,7 +36,7 @@ class UpdaterUI(QMainWindow):
             msg.setStandardButtons(QMessageBox.Ok)
             if stat == 1:
                 self.updater.updateApp()
-                msg.setText("Linguis is updated to version "+ str(self.))
+                msg.setText("Linguis is updated to version "+ str(self.updater.updater_ver))
                 msg.setWindowTitle("Updated.")
             elif stat == 0:
                 msg.setText("Linguis is already in the latest version.")
@@ -51,3 +51,6 @@ def main():
     u = UpdaterUI()
     u.show()
     return app.exec_()
+
+if __name__ == '__main__':
+    main()
