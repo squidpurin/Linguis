@@ -121,7 +121,7 @@ class Ui_OptionsMenu(object):
         self.label_7.setText(_translate("OptionsMenu", "Application Info"))
         self.label_8.setText(_translate("OptionsMenu", "GitHub Page:"))
         self.label_9.setText(_translate("OptionsMenu", "Developers: 58090002 Damian Satya Wibowo, 59090025 Punn Ouilapan, 59090038 Warakorn Jetlohasiri"))
-        self.helpText.setText(_translate("OptionsMenu", "[Help section loaded from text file]"))
+        self.helpText.setText(_translate("OptionsMenu", "[LOAD NIGGER]"))
         self.label_11.setText(_translate("OptionsMenu", "How to Use Linguis"))
         self.label_12.setText(_translate("OptionsMenu", "Report Bug/Contact Developer"))
         self.label_13.setText(_translate("OptionsMenu", "Enter your message here:"))
