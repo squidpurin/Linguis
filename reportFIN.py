@@ -1,6 +1,7 @@
 import smtplib
+from abc import ABC, abstractmethod
 
-class Reporter:
+class Notification(ABC):
     def __init__(self, user_):
         self.user = user_
         self.server = smtplib.SMTP('smtp.mail.yahoo.com',587)
@@ -8,6 +9,14 @@ class Reporter:
         self.server.starttls()
         self.server.ehlo()
         self.server.login('linguissep@yahoo.com','5859lsep')
+
+    def communicate(self, msg):
+        pass
+
+class Reporter(Communicator):
+    def __init__(self, user_):
+        super().__init__(user_)
+        
     def report(self, msg):
         try:
             email = self.user.email
@@ -20,14 +29,16 @@ class Reporter:
         except:
             print("Email not sent")
 
-class Notifier:
+    def communicate(self, msg):
+        self.notify(msg)
+    
+class Notifier(Communicator):
     def __init__(self, user_):
-        self.user = user_
-        self.server = smtplib.SMTP('smtp.mail.yahoo.com',587)
-        self.server.ehlo()
-        self.server.starttls()
-        self.server.ehlo()
-        self.server.login('linguissep@yahoo.com','5859lsep')
+        super().__init__(user_)
+
+    def communicate(self, msg):
+        self.notify(msg)
+        
     def notify(self, msg):
         try:
             email = self.user.email

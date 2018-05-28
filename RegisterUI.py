@@ -147,6 +147,11 @@ class RegistrationWidget(QWidget):
                 if (newuser.passwordVerification(self.password.text())):
                     self.register.createUser(newuser)
                     print("Sign up a user successfully")
+                    succ = QMessageBox()
+                    succ.setIcon(QMessageBox.Warning)
+                    succ.setText("Signed up successfully")
+                    succ.setStandardButtons(QMessageBox.Ok)
+                    succ.exec_()
                 else:
                     self.NotifyInvalidPasswordForm()
                     print("Warning Message Invalid form of password")
