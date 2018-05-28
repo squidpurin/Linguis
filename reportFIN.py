@@ -4,11 +4,11 @@ from abc import ABC, abstractmethod
 class Notification(ABC):
     def __init__(self, user_):
         self.user = user_
-        self.server = smtplib.SMTP('smtp.mail.yahoo.com',587)
+        self.server = smtplib.SMTP('smtp.gmail.com',587)
         self.server.ehlo()
         self.server.starttls()
         self.server.ehlo()
-        self.server.login('linguissep@yahoo.com','5859lsep')
+        self.server.login('linguissep@gmail.com','5859lsep')
 
     def communicate(self, msg):
         pass
@@ -20,10 +20,10 @@ class Reporter(Notification):
     def report(self, msg):
         try:
             email = self.user.email
-            name = self.user.firstname + ' ' + self.user.lastname
-            msg = "\n"+email+'\n'+name+'\n'+msg
+            name = 'First name- ' + self.user.firstname + '\n Last name- ' + self.user.lastname + '\n Username- ' + self.user.username
+            message = "E-mail- "+email+'\n'+name+'\n Message- '+msg
             #print(msg)
-            self.server.sendmail("linguissep@yahoo.com","linguissep@yahoo.com",msg)
+            self.server.sendmail("linguissep@gmail.com","linguissep@gmail.com",message)
             #print("mg sent")
             self.server.quit()
         except:
@@ -43,10 +43,9 @@ class Notifier(Notification):
     def notify(self, msg):
         try:
             email = self.user.email
-            name = self.user.firstname + ' ' + self.user.lastname
-            msg = "\n"+email+'\n'+name+'\n'+msg
-            #print(msg)
-            self.server.sendmail("linguissep@yahoo.com",email,msg)
+            name = 'First name- ' + self.user.firstname + '\n Last name- ' + self.user.lastname + '\n Username- ' + self.user.username
+            message = "E-mail- "+email+'\n'+name+'\n Message- '+ msg
+            self.server.sendmail("linguissep@gmail.com",email,message)
             #print("mg sent")
             self.server.quit()
         except:
