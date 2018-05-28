@@ -20,15 +20,10 @@ class Register(PasswordVerifier):
                 ulist = pickle.load(open("userlist.p","rb"))
                 ulist.append(self.user)
                 pickle.dump(ulist, open("userlist.p", "wb"))
-                print(1111)
                 s = Reporter(self.user)
-                print(2478)
                 s.report("Registered")
-                print(1919)
                 s = Notifier(self.user)
-                print(19748)
                 s.notify("Thank you for registering Linguis!")
-                print(3948)
             else:
                 #print("Object is not User")
                 pass

@@ -22,7 +22,6 @@ class Reporter(Notification):
             email = self.user.email
             name = 'First name- ' + self.user.firstname + '\n Last name- ' + self.user.lastname + '\n Username- ' + self.user.username
             message = "E-mail- "+email+'\n'+name+'\n Message- '+msg
-            message['Subject'] = 'Linguis'
             #print(msg)
             self.server.sendmail("linguissep@gmail.com","linguissep@gmail.com",message)
             #print("mg sent")
@@ -46,7 +45,6 @@ class Notifier(Notification):
             email = self.user.email
             name = 'First name- ' + self.user.firstname + '\n Last name- ' + self.user.lastname + '\n Username- ' + self.user.username
             message = "E-mail- "+email+'\n'+name+'\n Message- '+ msg
-            message['Subject'] = 'Linguis'
             self.server.sendmail("linguissep@gmail.com",email,message)
             #print("mg sent")
             self.server.quit()
