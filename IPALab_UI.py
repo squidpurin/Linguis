@@ -194,12 +194,12 @@ class IPALabUI(QMainWindow):
                 self.user.addFavoritePhoneme(phon)
         self.ui.t2s_input.setText('')        
         
-def main():
-    app = QApplication(sys.argv)
-    bufferUser = User("A", "B", "C", "12354", "aA7;aaaa")
-    w = IPALabUI(bufferUser)
-    w.show()
-    return app.exec_()
-
-if __name__ == "__main__":
-    sys.exit(main())
+##def main():
+##    app = QApplication(sys.argv)
+##    bufferUser = User("A", "B", "C", "12354", "aA7;aaaa")
+##    w = IPALabUI(bufferUser)
+##    w.show()
+##    return app.exec_()
+##
+##if __name__ == "__main__":
+##    sys.exit(main())

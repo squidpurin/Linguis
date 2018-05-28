@@ -96,7 +96,7 @@ class QuizApplication(QWidget):
             self.NotifyIncompleteMessage()
             self.showIncompleteQuestion()
         self.showFinalResult()
-        print(self.quizEvaluator.getFinalScore())
+        #print(self.quizEvaluator.getFinalScore())
 
     #Classify correct and wrong question
     def showFinalResult(self):
@@ -124,7 +124,7 @@ class QuizApplication(QWidget):
         overwrite = False
         if self.user.quizResult == {}:
             self.user.quizResult = []
-            print(self.user.quizResult)
+            #print(self.user.quizResult)
         elif len(self.user.quizResult) > 0:
             for qres in self.user.quizResult:
                 if qres[0] == self.quiz.id:
@@ -132,7 +132,7 @@ class QuizApplication(QWidget):
                     overwrite = True
         if overwrite == False:
             self.user.quizResult.append([self.quiz.id, result])
-        print(self.user.quizResult)
+        #print(self.user.quizResult)
         retval = msg.exec_()
        
     #Check if all question is completed
@@ -198,7 +198,7 @@ class QuizApplication(QWidget):
     def addNewQuestion(self):
         tmp = QWidget()
         self.stack.append(tmp)
-        print("New question added successfully")
+        #print("New question added successfully")
 
     #Create fill in the blank question
     def CreateFillInAnswerQuestion(self, question):
@@ -228,15 +228,15 @@ class QuizApplication(QWidget):
         self.hide()
         self.parent.show()
 
-def main():
-    app = QApplication(sys.argv)
-    #Parse quizzes
-    quizzes = parseToQuizzes("quizzes.txt")
-    for q in quizzes:
-        if q.id == "Quiz2-IPA":
-            quiz_ = q
-    ex = QuizApplication(quiz_, User("A","B","C","19419","12Ab=IUU"))
-    sys.exit(app.exec_())
-
-if __name__ == '__main__':
-    main()
+##def main():
+##    app = QApplication(sys.argv)
+##    #Parse quizzes
+##    quizzes = parseToQuizzes("quizzes.txt")
+##    for q in quizzes:
+##        if q.id == "Quiz2-IPA":
+##            quiz_ = q
+##    ex = QuizApplication(quiz_, User("A","B","C","19419","12Ab=IUU"))
+##    sys.exit(app.exec_())
+##
+##if __name__ == '__main__':
+##    main()

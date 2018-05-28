@@ -23,5 +23,6 @@ class UserAnswerList:
 
     def displayUserAns(self):
         for i in self.answerlist:
-            print(str("Question: " + i.getQuestion()) + "Answer: " + str(i.getAnswer()))
+            #print(str("Question: " + i.getQuestion()) + "Answer: " + str(i.getAnswer()))
+            pass
 

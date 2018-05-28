@@ -223,14 +223,6 @@ class LoginWidget(QWidget):
         self.password.setMaxLength(12)
         self.password.setAlignment(Qt.AlignLeft)
         self.password.setEchoMode(QLineEdit.Password)
-
-        try: 
-            [un, pw] = pickle.load(open("rememberme.p", "rb")) 
-            self.username.setText(un) 
-            self.password.setText(pw) 
-            pickle.dump([un, pw], open("rememberme.p", "wb")) 
-        except: 
-            print("No remember data")
                   
         flo.addRow(Label2)
         flo.addRow(self.password)
@@ -239,6 +231,15 @@ class LoginWidget(QWidget):
         self.b1.stateChanged.connect(lambda: self.Rememberme(self.b1))
         flo.addRow(self.b1)
 
+        try: 
+            [un, pw] = pickle.load(open("rememberme.p", "rb")) 
+            self.username.setText(un) 
+            self.password.setText(pw) 
+            pickle.dump([un, pw], open("rememberme.p", "wb"))
+            self.b1.setChecked(True)
+        except:
+            print("No remember data")
+            
         signinButton = QPushButton("Login")
         signinButton.clicked.connect(self.LoginApp)
         signinButton.setFixedWidth(100)
@@ -277,7 +278,7 @@ class LoginWidget(QWidget):
         else:
             #In case that the password is invalid
             self.NotifyInvalidUserPassword()
-            print("Invalid ID or Password")
+            #print("Invalid ID or Password")
 
     #Information box display when invalid username or password
     def NotifyInvalidUserPassword(self):

@@ -15,7 +15,7 @@ class Login(PasswordVerifier):
 
     def match(self):
         for p in self.uList:
-            print(p.getUserName(), self.username.text())
+            #print(p.getUserName(), self.username.text())
             if (p.getUserName() == self.username.text()) and (p.getPassword() == self.password.text()):
                 self.user = p
                 return self.user

@@ -102,7 +102,7 @@ class FavouriteUI(QWidget):
         for item in listItems:
             self.phonemelist.takeItem(self.phonemelist.row(item))
         self.user.delFavoritePhoneme(item.text())
-        print(self.user.favorites_phoneme)
+        #print(self.user.favorites_phoneme)
 
     def deletefavouritecontent(self):
         listItems = self.contentlist.selectedItems()
@@ -112,19 +112,19 @@ class FavouriteUI(QWidget):
         for content in self.user.favorites_content:
             if(itemToTake == content.getPageTitle()):
                 self.user.delFavoriteContent(content)
-        print(self.user.favorites_content)
+        #print(self.user.favorites_content)
 
 
-def main():
-    app = QApplication(sys.argv)
-    user_ = User("A", "B", "C", "1515", "12ABhf--")
-    import page
-    page1 = page.Page("00150","Consonants","00150-Consonants.html")
-    user_.pageUI = pgui.ContentGUI(user_)
-    user_.favorites_content.append(page1)
-    ex = FavouriteUI(user_)
-    sys.exit(app.exec_())
-
-if __name__ == '__main__':
-    main()
+##def main():
+##    app = QApplication(sys.argv)
+##    user_ = User("A", "B", "C", "1515", "12ABhf--")
+##    import page
+##    page1 = page.Page("00150","Consonants","00150-Consonants.html")
+##    user_.pageUI = pgui.ContentGUI(user_)
+##    user_.favorites_content.append(page1)
+##    ex = FavouriteUI(user_)
+##    sys.exit(app.exec_())
+##
+##if __name__ == '__main__':
+##    main()
 

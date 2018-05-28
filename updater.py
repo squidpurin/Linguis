@@ -24,10 +24,10 @@ class Updater:
                 self.updateable = True
                 return 1
             else:
-                print("Linguis is already in the latest version")
+                #print("Linguis is already in the latest version")
                 return 0                
         except:
-            print("Invalid updater package.")
+            #print("Invalid updater package.")
             return -1
         
     def updateApp(self):

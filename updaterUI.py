@@ -20,7 +20,8 @@ class UpdaterUI(QMainWindow):
             fn = QFileDialog.getOpenFileName(self, 'Open file', os.getcwd(),"Zip file (*.zip)")
             self.updaterLoc = fn[0]
         except:
-            print("No file selected.")
+            #print("No file selected.")
+            pass
         if self.updaterLoc != None:
             self.ui.pathField.setText(self.updaterLoc)
             self.updater = updater_.Updater(self.updaterLoc)

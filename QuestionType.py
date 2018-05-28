@@ -80,38 +80,43 @@ class MultipleChoice(QWidget, QuestionType):
         ans = b.text()[:1]
         if ans == "A":
             if b.isChecked() == True:
-                print(ans + " is selected")
+                #print(ans + " is selected")
                 self.setuseranswer('A')
             else:
-                print(ans + " is deselected")
+                #print(ans + " is deselected")
+                pass
 
         if ans == "B":
             if b.isChecked() == True:
-                print(ans + " is selected")
+                #print(ans + " is selected")
                 self.setuseranswer('B')
             else:
-                print(ans + " is deselected")
+                #print(ans + " is deselected")
+                pass
 
         if ans == "C":
             if b.isChecked() == True:
-                print(ans + " is selected")
+                #print(ans + " is selected")
                 self.setuseranswer('C')
             else:
-                print(ans + " is deselected")
+                #print(ans + " is deselected")
+                pass
 
         if ans == "D":
             if b.isChecked() == True:
-                print(ans + " is selected")
+                #print(ans + " is selected")
                 self.setuseranswer('D')
             else:
-                print(ans + " is deselected")
+                #print(ans + " is deselected")
+                pass
 
         if ans == "E":
             if b.isChecked() == True:
-                print(ans + " is selected")
+                #print(ans + " is selected")
                 self.setuseranswer('E')
             else:
-                print(ans + " is deselected")
+                #print(ans + " is deselected")
+                pass
 
 class TrueFalse(QWidget, QuestionType):
     def __init__(self,questionclass, parent=None):
@@ -150,17 +155,19 @@ class TrueFalse(QWidget, QuestionType):
     def btnstate(self, btn):
         if btn.text() == "True":
             if btn.isChecked() == True:
-                print(btn.text() + " is selected")
+                #print(btn.text() + " is selected")
                 self.setuseranswer('true')
             else:
-                print(btn.text() + " is deselected")
+                #print(btn.text() + " is deselected")
+                pass
 
         elif btn.text() == "False":
             if btn.isChecked() == True:
-                print(btn.text() + " is selected")
+                #print(btn.text() + " is selected")
                 self.setuseranswer('false')
             else:
-                print(btn.text() + " is deselected")
+                #print(btn.text() + " is deselected")
+                pass
 
 
 class FillTheWord(QWidget, QuestionType):

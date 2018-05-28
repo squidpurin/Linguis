@@ -15,23 +15,18 @@ class Register(PasswordVerifier):
             #loop back
         else:
             #load db user
-            print(type(self.user))
+            #print(type(self.user))
             if(type(self.user) == User):
                 ulist = pickle.load(open("userlist.p","rb"))
                 ulist.append(self.user)
                 pickle.dump(ulist, open("userlist.p", "wb"))
-                print(398274)
                 s = Reporter(self.user)
-                print(19283)
                 s.report("Registered")
-                print(28274)
                 s = Notifier(self.user)
-                print(888)
-                s.notify("Thank you for registering Linguis!")
-                print(927)
-                
+                s.notify("Thank you for registering Linguis!")               
             else:
-                print("Object is not User")
+                #print("Object is not User")
+                pass
 
     def is_duplicate(self):
         #load db
@@ -42,6 +37,6 @@ class Register(PasswordVerifier):
         pickle.dump(uList, open("userlist.p","wb"))
         return False
 
-def main():
-    h = Register()
-    h.createUser(User("babi", "khinzir", "c.dswibowo@yahoo.com.tw", "1337", "abcd0AVC"))
+##def main():
+##    h = Register()
+##    h.createUser(User("babi", "khinzir", "c.dswibowo@yahoo.com.tw", "1337", "abcd0AVC"))

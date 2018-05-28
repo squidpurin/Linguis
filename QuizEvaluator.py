@@ -20,13 +20,14 @@ class QuizEvaluator:
                     question.setAnswered()
                     if (question.getAnswer() == userans.getAnswer()):
                         self.correctList.append(userans)
-                        print("Correct Question: " + userans.getQuestion() + "Ans: " + userans.getAnswer())
+                        #print("Correct Question: " + userans.getQuestion() + "Ans: " + userans.getAnswer())
                         self.finalscore += 1
                     else:
-                        print("Wrong Question: " + userans.getQuestion() + "Ans: " + userans.getAnswer())
+                        #print("Wrong Question: " + userans.getQuestion() + "Ans: " + userans.getAnswer())
+                        pass
         for question in self.quiz.getQAList():
             if not (question.getAnswered()):
-                print("Incomplete Q: " + question.getQuestion() + " " + question.getAnswer())
+                #print("Incomplete Q: " + question.getQuestion() + " " + question.getAnswer())
 
         self.setFinalScore(self.getFinalScore())
         return self.correctList

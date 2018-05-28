@@ -56,7 +56,7 @@ class MainMenu( QMainWindow ):
         self.user.ipaLabUI = None
         self.user.favUI = None
         self.user.optionUI = None
-        print( userList )
+        #print( userList )
         for _user in userList:
             if self.user.username == _user.username:
                 userList.remove( _user )
@@ -66,7 +66,7 @@ class MainMenu( QMainWindow ):
         except Exception as ex:
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format( type( ex ).__name__, ex.args )
-            print( message )
+            #print( message )
         self.hide()
 
     def closeEvent( self, event ):
@@ -79,13 +79,13 @@ class MainMenu( QMainWindow ):
             event.ignore()
 
 
-def main():
-    app = QApplication( sys.argv )
-    bufferUser = User( "A", "B", "C", "12354", "aA7-=aaa" )
-    w = MainMenu( bufferUser )
-    w.show()
-    return app.exec_()
-
-
-if __name__ == "__main__":
-    sys.exit( main() )
+##def main():
+##    app = QApplication( sys.argv )
+##    bufferUser = User( "A", "B", "C", "12354", "aA7-=aaa" )
+##    w = MainMenu( bufferUser )
+##    w.show()
+##    return app.exec_()
+##
+##
+##if __name__ == "__main__":
+##    sys.exit( main() )

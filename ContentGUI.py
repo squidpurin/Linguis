@@ -66,7 +66,7 @@ class ContentGUI(QWidget):
         webView = QtWebEngineWidgets.QWebEngineView()
         webView.setFixedSize(500,500)
         URL = os.getcwd() + '/htmls/' + page
-        print(URL)
+        #print(URL)
         webView.load(QUrl().fromUserInput(URL))
         webView.urlChanged.connect(self.checkURL)
 
@@ -84,7 +84,7 @@ class ContentGUI(QWidget):
         for content in self.content.content_collection:
             if(favcontent == content.getPageTitle() and favcontent not in userTitles):
                 self.user.favorites_content.append(content)
-        print(self.user.favorites_content)
+        #print(self.user.favorites_content)
 
     
     #Display the question with respect to the question number
@@ -94,7 +94,7 @@ class ContentGUI(QWidget):
     def checkURL(self):
         url = self.webView.url().toDisplayString()
         data = urlparse.urlparse(url)
-        print(data.netloc)
+        #print(data.netloc)
         if (data.netloc == 'localhost'):
             response_data = urlparse.parse_qs(data.query)
             self.getToken(response_data)

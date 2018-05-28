@@ -3,7 +3,8 @@ try:
     import pyaudio
     from pydub import AudioSegment
 except:
-    print("No pyaudio")
+    #print("No pyaudio")
+    pass
 
 class Mapper:
     def __init__(self):

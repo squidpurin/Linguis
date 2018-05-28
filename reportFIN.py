@@ -13,7 +13,7 @@ class Notification(ABC):
     def communicate(self, msg):
         pass
 
-class Reporter(Communicator):
+class Reporter(Notification):
     def __init__(self, user_):
         super().__init__(user_)
         
@@ -22,17 +22,18 @@ class Reporter(Communicator):
             email = self.user.email
             name = self.user.firstname + ' ' + self.user.lastname
             msg = "\n"+email+'\n'+name+'\n'+msg
-            print(msg)
+            #print(msg)
             self.server.sendmail("linguissep@yahoo.com","linguissep@yahoo.com",msg)
-            print("mg sent")
+            #print("mg sent")
             self.server.quit()
         except:
-            print("Email not sent")
+            #print("Email not sent")
+            pass
 
     def communicate(self, msg):
         self.notify(msg)
     
-class Notifier(Communicator):
+class Notifier(Notification):
     def __init__(self, user_):
         super().__init__(user_)
 
@@ -44,9 +45,10 @@ class Notifier(Communicator):
             email = self.user.email
             name = self.user.firstname + ' ' + self.user.lastname
             msg = "\n"+email+'\n'+name+'\n'+msg
-            print(msg)
+            #print(msg)
             self.server.sendmail("linguissep@yahoo.com",email,msg)
-            print("mg sent")
+            #print("mg sent")
             self.server.quit()
         except:
-            print("Email not sent")
+            #print("Email not sent")
+            pass
