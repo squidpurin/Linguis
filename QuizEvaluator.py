@@ -28,6 +28,7 @@ class QuizEvaluator:
         for question in self.quiz.getQAList():
             if not (question.getAnswered()):
                 #print("Incomplete Q: " + question.getQuestion() + " " + question.getAnswer())
+                pass
 
         self.setFinalScore(self.getFinalScore())
         return self.correctList
