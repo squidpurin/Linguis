@@ -169,17 +169,20 @@ class IPALabUI(QMainWindow):
             self.ui.t2s_input.setText(self.ui.t2s_input.text() + phoneme)
 
     def savePronunciation(self):
-        fileName, _ = QFileDialog.getSaveFileName(self,"Save pronunciation file...")
-        sequence = self.player.decode(self.ui.t2s_input.text())
-        if fileName.find(".wav") == -1:
-            fileName += ".wav"
-        self.player.wav_combine(sequence, fileName)
-        msg = QMessageBox()
-        msg.setIcon(QMessageBox.Information)
-        msg.setText("Pronunciation saved.")
-        msg.setWindowTitle("Saved")
-        msg.setStandardButtons(QMessageBox.Ok)
-        msg.exec_()        
+        try:
+            fileName, _ = QFileDialog.getSaveFileName(self,"Save pronunciation file...")
+            sequence = self.player.decode(self.ui.t2s_input.text())
+            if fileName.find(".wav") == -1:
+                fileName += ".wav"
+            self.player.wav_combine(sequence, fileName)
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            msg.setText("Pronunciation saved.")
+            msg.setWindowTitle("Saved")
+            msg.setStandardButtons(QMessageBox.Ok)
+            msg.exec_()
+        except:
+            pass
           
     def pronunceAll(self):
         sequence = self.player.decode(self.ui.t2s_input.text())
